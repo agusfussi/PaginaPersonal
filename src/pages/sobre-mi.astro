@@ -61,31 +61,31 @@ const education = [
     <div class="mb-10">
       <a 
         href="/" 
-        class="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors group"
+        class="inline-flex items-center gap-2 text-xs font-mono text-zinc-300 hover:text-white transition-colors group focus:outline-none focus:ring-2 focus:ring-zinc-400 rounded-sm"
+        aria-label="Volver a la página principal"
       >
-        <span class="transition-transform group-hover:-translate-x-1">←</span>
+        <span class="transition-transform group-hover:-translate-x-1" aria-hidden="true">←</span>
         <span>Volver al inicio</span>
       </a>
     </div>
 
     <!-- Hero / Profile Card -->
-    <header class="border-b border-zinc-800/80 pb-16 mb-20">
+    <header class="border-b border-zinc-800 pb-16 mb-20">
       <div class="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
         
         <!-- Profile Image -->
         <div class="relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 border-zinc-700 bg-zinc-900 shrink-0 shadow-2xl">
           <img 
             src="/images/perfil.jpg" 
-            alt="Agustín Fussi" 
+            alt="Fotografía de perfil de Agustín Fussi" 
             class="w-full h-full object-cover object-top"
           />
-          <div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl pointer-events-none"></div>
         </div>
 
         <!-- Bio & Heading -->
         <div class="space-y-4">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/60 text-zinc-400 text-xs font-mono backdrop-blur-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-700 bg-zinc-900/90 text-zinc-200 text-xs font-mono backdrop-blur-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400" aria-hidden="true"></span>
             <span>Rosario, Santa Fe, Argentina &middot; GMT-3</span>
           </div>
 
@@ -93,11 +93,11 @@ const education = [
             Agustín Fussi
           </h1>
 
-          <p class="text-base sm:text-lg text-zinc-300 font-normal leading-relaxed">
-            Estudiante de 2.º año de la <strong>Licenciatura en Negocios Digitales</strong> en la <em>Universidad Austral</em> y <strong>Técnico en Informática</strong> egresado de la <em>Escuela Técnica San José</em>.
+          <p class="text-base sm:text-lg text-zinc-200 font-normal leading-relaxed">
+            Estudiante de 2.º año de la <strong class="text-white">Licenciatura en Negocios Digitales</strong> en la <em class="text-zinc-100">Universidad Austral</em> y <strong class="text-white">Técnico en Informática</strong> egresado de la <em class="text-zinc-100">Escuela Técnica San José</em>.
           </p>
 
-          <p class="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
+          <p class="text-sm sm:text-base text-zinc-300 font-light leading-relaxed">
             Interesado en la tecnología, la innovación y el desarrollo de soluciones digitales que resuelvan problemas reales. Me considero una persona responsable, respetuosa, con iniciativa propia y alta predisposición para aprender y trabajar en equipo.
           </p>
         </div>
@@ -109,45 +109,45 @@ const education = [
     <div class="space-y-24">
       
       <!-- Section 1: Experiencia Profesional -->
-      <section id="experiencia">
+      <section id="experiencia" aria-labelledby="exp-heading">
         <div class="flex items-center justify-between mb-12">
           <div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-zinc-100 tracking-tight">
+            <h2 id="exp-heading" class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Experiencia Profesional
             </h2>
-            <p class="text-xs sm:text-sm font-mono text-zinc-400 mt-1">
+            <p class="text-xs sm:text-sm font-mono text-zinc-300 mt-1">
               Desarrollo de software a medida y entornos técnicos
             </p>
           </div>
-          <span class="text-xs font-mono text-zinc-500 hidden sm:inline-block">2 roles</span>
+          <span class="text-xs font-mono text-zinc-300 hidden sm:inline-block">2 roles</span>
         </div>
 
-        <div class="relative border-l-2 border-zinc-800 ml-3 md:ml-6 space-y-12">
+        <div class="relative border-l-2 border-zinc-700 ml-3 md:ml-6 space-y-12">
           {experiences.map((exp) => (
             <article class="relative pl-8 group">
               <!-- Timeline Dot -->
-              <div class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-zinc-200 border-4 border-[#09090b] shadow-[0_0_0_1px_rgba(255,255,255,0.1)]"></div>
+              <div class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-zinc-200 border-4 border-[#09090b]" aria-hidden="true"></div>
 
               <div class="flex flex-col gap-1 mb-3">
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4">
-                  <h3 class="text-xl sm:text-2xl font-bold text-zinc-100">
-                    {exp.company} — <span class="font-normal text-zinc-400">{exp.role}</span>
+                  <h3 class="text-xl sm:text-2xl font-bold text-white">
+                    {exp.company} — <span class="font-normal text-zinc-300">{exp.role}</span>
                   </h3>
-                  <span class="text-xs sm:text-sm font-mono text-zinc-500 whitespace-nowrap">
+                  <span class="text-xs sm:text-sm font-mono text-zinc-300 whitespace-nowrap">
                     {exp.period}
                   </span>
                 </div>
 
-                <p class="text-xs text-zinc-500 font-mono" set:html={exp.location} />
+                <p class="text-xs text-zinc-300 font-mono" set:html={exp.location} />
               </div>
 
-              <p class="text-zinc-400 leading-relaxed text-sm sm:text-base mb-4">
+              <p class="text-zinc-200 leading-relaxed text-sm sm:text-base mb-4">
                 {exp.description}
               </p>
 
               <ul class="flex flex-wrap gap-2">
                 {exp.tags.map((tag) => (
-                  <li class="text-[11px] font-mono px-2.5 py-1 border border-zinc-800 text-zinc-400 rounded-md bg-zinc-900/60">
+                  <li class="text-[11px] font-mono px-2.5 py-1 border border-zinc-700 text-zinc-200 rounded-md bg-zinc-900">
                     {tag}
                   </li>
                 ))}
@@ -158,43 +158,43 @@ const education = [
       </section>
 
       <!-- Section 2: Educación & Formación con Imágenes -->
-      <section id="educacion" class="border-t border-zinc-800/80 pt-20">
+      <section id="educacion" class="border-t border-zinc-800 pt-20" aria-labelledby="edu-heading">
         <div class="mb-12">
-          <h2 class="text-2xl sm:text-3xl font-bold text-zinc-100 tracking-tight">
+          <h2 id="edu-heading" class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
             Educación & Distinciones
           </h2>
-          <p class="text-xs sm:text-sm font-mono text-zinc-400 mt-1">
+          <p class="text-xs sm:text-sm font-mono text-zinc-300 mt-1">
             Formación universitaria, mérito académico y certificaciones
           </p>
         </div>
 
-        <div class="relative border-l-2 border-zinc-800 ml-3 md:ml-6 space-y-16">
+        <div class="relative border-l-2 border-zinc-700 ml-3 md:ml-6 space-y-16">
           {education.map((item) => (
             <article class="relative pl-8 group">
               <!-- Timeline Dot -->
-              <div class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-zinc-200 border-4 border-[#09090b] shadow-[0_0_0_1px_rgba(255,255,255,0.1)]"></div>
+              <div class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-zinc-200 border-4 border-[#09090b]" aria-hidden="true"></div>
 
               <div class="flex flex-col gap-1 mb-3">
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4">
-                  <h3 class="text-xl sm:text-2xl font-bold text-zinc-100">
+                  <h3 class="text-xl sm:text-2xl font-bold text-white">
                     {item.institution}
                   </h3>
-                  <span class="text-xs sm:text-sm font-mono text-zinc-500 whitespace-nowrap">
+                  <span class="text-xs sm:text-sm font-mono text-zinc-300 whitespace-nowrap">
                     {item.period}
                   </span>
                 </div>
-                <p class="text-sm font-medium text-zinc-300">
-                  {item.degree} &middot; <span class="text-zinc-500 font-mono text-xs">{item.location}</span>
+                <p class="text-sm font-medium text-zinc-200">
+                  {item.degree} &middot; <span class="text-zinc-300 font-mono text-xs">{item.location}</span>
                 </p>
               </div>
 
-              <p class="text-zinc-400 leading-relaxed text-sm sm:text-base mb-4">
+              <p class="text-zinc-200 leading-relaxed text-sm sm:text-base mb-4">
                 {item.description}
               </p>
 
               <ul class="flex flex-wrap gap-2 mb-6">
                 {item.skills.map((skill) => (
-                  <li class="text-[11px] font-mono px-2.5 py-1 border border-zinc-800 text-zinc-400 rounded-md bg-zinc-900/60">
+                  <li class="text-[11px] font-mono px-2.5 py-1 border border-zinc-700 text-zinc-200 rounded-md bg-zinc-900">
                     {skill}
                   </li>
                 ))}
@@ -202,16 +202,16 @@ const education = [
 
               <!-- Image with caption if present -->
               {item.image && (
-                <div class="mt-6 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900/80 p-3 max-w-lg shadow-xl">
-                  <div class="relative aspect-[4/3] rounded-lg overflow-hidden border border-zinc-800">
+                <div class="mt-6 rounded-xl overflow-hidden border border-zinc-700 bg-zinc-900/90 p-3 max-w-lg shadow-xl">
+                  <div class="relative aspect-[4/3] rounded-lg overflow-hidden border border-zinc-700">
                     <img 
                       src={item.image} 
                       alt={item.imageCaption || item.institution} 
-                      class="w-full h-full object-cover object-center filter brightness-95 hover:brightness-105 transition-all duration-300"
+                      class="w-full h-full object-cover object-center filter brightness-95 hover:brightness-105 transition-all duration-300" 
                     />
                   </div>
                   {item.imageCaption && (
-                    <p class="mt-2.5 text-xs font-mono text-zinc-400 text-center">
+                    <p class="mt-2.5 text-xs font-mono text-zinc-300 text-center">
                       📷 {item.imageCaption}
                     </p>
                   )}
@@ -223,35 +223,37 @@ const education = [
       </section>
 
       <!-- Section 3: Trayectoria Deportiva & Valores -->
-      <section class="border-t border-zinc-800/80 pt-20">
-        <div class="bg-gradient-to-br from-zinc-900/80 to-zinc-950 border border-zinc-800 rounded-2xl p-8 md:p-10 relative overflow-hidden shadow-xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 text-xs font-mono mb-4">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+      <section class="border-t border-zinc-800 pt-20" aria-labelledby="sports-heading">
+        <div class="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-700 rounded-2xl p-8 md:p-10 relative overflow-hidden shadow-xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-700 bg-zinc-900 text-zinc-300 text-xs font-mono mb-4">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400" aria-hidden="true"></span>
             <span>Club Gimnasia y Esgrima de Rosario (GER) &middot; Rugby</span>
           </div>
 
-          <h2 class="text-2xl sm:text-3xl font-bold text-zinc-100 tracking-tight mb-4">
+          <h2 id="sports-heading" class="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-4">
             Valores & Deporte Competitivo
           </h2>
 
-          <p class="text-zinc-300 text-sm sm:text-base leading-relaxed max-w-2xl">
-            Mi formación deportiva en rugby en GER consolidó principios humanos y profesionales que aplico a diario en el desarrollo y la gestión de proyectos: <strong>disciplina</strong> para cumplir plazos y exigencias, <strong>trabajo en equipo</strong> sincronizado y generoso, <strong>resiliencia</strong> para resolver bloqueos bajo presión y <strong>respeto</strong> constante por los demás.
+          <p class="text-zinc-200 text-sm sm:text-base leading-relaxed max-w-2xl">
+            Mi formación deportiva en rugby en GER consolidó principios humanos y profesionales que aplico a diario en el desarrollo y la gestión de proyectos: <strong class="text-white">disciplina</strong> para cumplir plazos y exigencias, <strong class="text-white">trabajo en equipo</strong> sincronizado y generoso, <strong class="text-white">resiliencia</strong> para resolver bloqueos bajo presión y <strong class="text-white">respeto</strong> constante por los demás.
           </p>
         </div>
       </section>
 
       <!-- Bottom Navigation / CTAs -->
-      <div class="border-t border-zinc-800/80 pt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="border-t border-zinc-800 pt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
         <a 
           href="/" 
-          class="w-full sm:w-auto px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors text-sm font-medium text-center"
+          class="w-full sm:w-auto px-6 py-3 rounded-lg border border-zinc-600 text-white hover:bg-zinc-800 transition-colors text-sm font-medium text-center focus:outline-none focus:ring-2 focus:ring-zinc-400"
+          aria-label="Volver a la página principal con proyectos"
         >
           ← Volver a Proyectos
         </a>
 
         <a 
           href={`mailto:${siteConfig.email}`} 
-          class="w-full sm:w-auto px-6 py-3 rounded-lg bg-zinc-100 text-zinc-950 hover:bg-zinc-300 transition-colors text-sm font-semibold text-center"
+          class="w-full sm:w-auto px-6 py-3 rounded-lg bg-zinc-100 text-zinc-950 hover:bg-white transition-colors text-sm font-semibold text-center focus:outline-none focus:ring-2 focus:ring-zinc-400"
+          aria-label={`Escribir correo a ${siteConfig.email}`}
         >
           Escribir a {siteConfig.email}
         </a>

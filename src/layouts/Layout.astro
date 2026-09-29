@@ -56,14 +56,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
   </head>
   <body class="bg-[#09090b] text-zinc-100 min-h-screen flex flex-col selection:bg-zinc-800 selection:text-white antialiased">
     
+    <!-- Skip to main content link for keyboard & screen reader accessibility -->
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-zinc-950 focus:font-bold focus:rounded-md focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-zinc-400"
+    >
+      Saltar al contenido principal
+    </a>
+
     <!-- Background subtle ambient lighting -->
-    <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+    <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden" aria-hidden="true">
       <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-zinc-700/10 via-zinc-800/5 to-transparent blur-[140px] rounded-full"></div>
     </div>
 
     <Navbar />
     
-    <main class="flex-grow">
+    <main id="main-content" class="flex-grow">
       <slot />
     </main>
 

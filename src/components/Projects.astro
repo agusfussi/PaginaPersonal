@@ -2,12 +2,12 @@
 import { realProjects } from '../data/projects';
 ---
 
-<section id="proyectos" class="w-11/12 max-w-4xl mx-auto my-28 px-4 sm:px-6">
+<section id="proyectos" class="w-11/12 max-w-4xl mx-auto my-28 px-4 sm:px-6" aria-labelledby="projects-heading">
   <div class="text-center mb-16">
-    <h2 class="text-3xl md:text-4xl font-bold text-zinc-100 tracking-tight">
+    <h2 id="projects-heading" class="text-3xl md:text-4xl font-bold text-white tracking-tight">
       Proyectos & Desarrollos
     </h2>
-    <p class="mt-3 text-zinc-400 text-sm md:text-base max-w-lg mx-auto">
+    <p class="mt-3 text-zinc-200 text-sm md:text-base max-w-lg mx-auto">
       Soluciones reales creadas con código limpio, arquitectura sólida e interfaces funcionales.
     </p>
   </div>
@@ -16,9 +16,12 @@ import { realProjects } from '../data/projects';
     {realProjects.map((project, idx) => {
       const isEven = idx % 2 === 1;
       const targetUrl = project.liveUrl || project.githubUrl;
+      const commonAriaLabel = project.liveUrl 
+        ? `Visitar sitio web de ${project.title}` 
+        : `Ver proyecto ${project.title} en GitHub`;
 
       return (
-        <article class={`flex flex-col gap-8 items-center ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
+        <article class={`flex flex-col gap-8 items-center ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'}`} aria-label={project.title}>
           
           {/* Image / Visual Mockup */}
           <div class="w-full md:w-[48%]">
@@ -27,64 +30,64 @@ import { realProjects } from '../data/projects';
                 href={targetUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                class="block relative aspect-video rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-xl group hover:border-zinc-600 transition-all duration-300"
-                aria-label={`Visitar ${project.title}`}
+                class="block relative aspect-video rounded-xl overflow-hidden border border-zinc-700 bg-zinc-900 shadow-xl group hover:border-zinc-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-zinc-400"
+                aria-label={commonAriaLabel}
               >
                 {project.image ? (
                   <img 
                     src={project.image} 
-                    alt={project.title}
+                    alt={`Captura de pantalla de la página ${project.title}`}
                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 filter brightness-95" 
                   />
                 ) : (
                   <div class="w-full h-full flex flex-col justify-between p-6 bg-gradient-to-br from-zinc-900 via-zinc-950 to-zinc-900 border border-zinc-800/40">
-                    <div class="flex items-center justify-between text-xs text-zinc-500 font-mono">
-                      <div class="flex gap-1.5">
-                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
-                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
-                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                    <div class="flex items-center justify-between text-xs text-zinc-300 font-mono">
+                      <div class="flex gap-1.5" aria-hidden="true">
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-600"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-600"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-600"></span>
                       </div>
                       {project.liveUrl && (
-                        <span class="text-[11px] text-zinc-400 truncate max-w-[160px]">
+                        <span class="text-[11px] text-zinc-300 truncate max-w-[160px]">
                           {project.liveUrl.replace('https://', '')}
                         </span>
                       )}
                     </div>
                     <div class="py-4">
-                      <p class="font-bold text-lg text-zinc-200 group-hover:text-white transition-colors">{project.title}</p>
-                      <p class="text-xs text-zinc-400 mt-1">{project.subtitle}</p>
+                      <p class="font-bold text-lg text-white group-hover:text-zinc-200 transition-colors">{project.title}</p>
+                      <p class="text-xs text-zinc-300 mt-1">{project.subtitle}</p>
                     </div>
                     <div class="flex items-center gap-1 text-xs text-emerald-400 font-mono">
                       <span>Abrir proyecto</span>
-                      <span class="transition-transform group-hover:translate-x-1">→</span>
+                      <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
                     </div>
                   </div>
                 )}
 
                 {project.highlight && (
-                  <div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-zinc-950/80 backdrop-blur-md border border-zinc-800 text-[10px] font-mono text-zinc-300 font-medium">
+                  <div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-zinc-950/90 backdrop-blur-md border border-zinc-700 text-[10px] font-mono text-zinc-200 font-medium">
                     {project.highlight}
                   </div>
                 )}
               </a>
             ) : (
-              <div class="relative aspect-video rounded-xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-zinc-900 via-zinc-950 to-zinc-900 p-6 flex flex-col justify-between shadow-xl">
-                <div class="flex items-center justify-between text-xs text-zinc-500 font-mono">
-                  <div class="flex gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+              <div class="relative aspect-video rounded-xl overflow-hidden border border-zinc-700 bg-gradient-to-br from-zinc-900 via-zinc-950 to-zinc-900 p-6 flex flex-col justify-between shadow-xl">
+                <div class="flex items-center justify-between text-xs text-zinc-300 font-mono">
+                  <div class="flex gap-1.5" aria-hidden="true">
+                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-600"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-600"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-600"></span>
                   </div>
-                  <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-400 border border-zinc-700">
+                  <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-600">
                     Desktop App
                   </span>
                 </div>
                 <div>
-                  <p class="font-bold text-lg text-zinc-200">{project.title}</p>
-                  <p class="text-xs text-zinc-400 mt-1">{project.subtitle}</p>
+                  <p class="font-bold text-lg text-white">{project.title}</p>
+                  <p class="text-xs text-zinc-300 mt-1">{project.subtitle}</p>
                 </div>
-                <div class="text-[11px] font-mono text-zinc-500 flex items-center gap-2">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500/80"></span>
+                <div class="text-[11px] font-mono text-zinc-300 flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
                   <span>En producción privada en empresa familiar</span>
                 </div>
               </div>
@@ -94,55 +97,57 @@ import { realProjects } from '../data/projects';
           {/* Description & Details */}
           <div class="w-full md:w-[52%] flex flex-col space-y-4">
             <div>
-              <span class="text-[11px] font-mono uppercase tracking-widest text-zinc-500 font-semibold">
+              <span class="text-[11px] font-mono uppercase tracking-widest text-zinc-300 font-semibold">
                 {project.subtitle}
               </span>
               
               {targetUrl ? (
-                <h3 class="text-2xl font-bold text-zinc-100 mt-1 tracking-tight">
+                <h3 class="text-2xl font-bold text-white mt-1 tracking-tight">
                   <a 
                     href={targetUrl} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    class="hover:text-white transition-colors inline-flex items-center gap-2 group"
+                    class="hover:text-zinc-200 transition-colors inline-flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-zinc-400 rounded-sm"
+                    aria-label={commonAriaLabel}
                   >
                     <span>{project.title}</span>
-                    <svg class="w-4 h-4 text-zinc-500 group-hover:text-zinc-300 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 text-zinc-400 group-hover:text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                     </svg>
                   </a>
                 </h3>
               ) : (
-                <h3 class="text-2xl font-bold text-zinc-100 mt-1 tracking-tight">
+                <h3 class="text-2xl font-bold text-white mt-1 tracking-tight">
                   {project.title}
                 </h3>
               )}
             </div>
 
-            <p class="text-sm md:text-base text-zinc-400 leading-relaxed">
+            <p class="text-sm md:text-base text-zinc-200 leading-relaxed font-normal">
               {project.description}
             </p>
 
             {/* Tags */}
             <div class="flex flex-wrap gap-1.5 pt-1">
               {project.tags.map((tag) => (
-                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-400">
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-zinc-900 border border-zinc-700 text-zinc-200">
                   {tag}
                 </span>
               ))}
             </div>
 
-            {/* Action Links: Only real working destinations */}
+            {/* Action Links */}
             <div class="pt-3 flex flex-wrap items-center gap-3">
               {project.liveUrl && (
                 <a 
                   href={project.liveUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-zinc-950 text-xs font-semibold hover:bg-zinc-200 transition-all shadow-sm"
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-zinc-950 text-xs font-semibold hover:bg-zinc-200 transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-400"
+                  aria-label={commonAriaLabel}
                 >
                   <span>Visitar Sitio Web</span>
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                   </svg>
                 </a>
@@ -153,13 +158,14 @@ import { realProjects } from '../data/projects';
                   href={project.githubUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  class={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-mono transition-all ${
+                  class={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-mono transition-all focus:outline-none focus:ring-2 focus:ring-zinc-400 ${
                     project.liveUrl 
-                      ? 'border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 bg-zinc-900/60' 
-                      : 'border border-zinc-700 text-zinc-200 hover:text-white hover:bg-zinc-800/80 bg-zinc-900'
+                      ? 'border border-zinc-700 text-zinc-200 hover:text-white hover:border-zinc-500 bg-zinc-900/80' 
+                      : 'border border-zinc-600 text-white hover:bg-zinc-800 bg-zinc-900 font-semibold'
                   }`}
+                  aria-label={`Ver código fuente de ${project.title} en GitHub`}
                 >
-                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
                   </svg>
                   <span>{project.liveUrl ? 'Código' : 'Ver en GitHub'}</span>
@@ -167,7 +173,7 @@ import { realProjects } from '../data/projects';
               )}
 
               {!project.liveUrl && !project.githubUrl && (
-                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900/60 text-zinc-500 text-xs font-mono">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-700 bg-zinc-900/80 text-zinc-300 text-xs font-mono">
                   <span>Código de uso privado</span>
                 </span>
               )}
@@ -185,10 +191,11 @@ import { realProjects } from '../data/projects';
       href="https://github.com/agusfussi?tab=repositories" 
       target="_blank" 
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-800 text-xs font-medium text-zinc-400 hover:text-white hover:border-zinc-600 hover:bg-zinc-900/60 transition-all font-mono"
+      class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-700 text-xs font-medium text-zinc-200 hover:text-white hover:border-zinc-400 hover:bg-zinc-900 transition-all font-mono focus:outline-none focus:ring-2 focus:ring-zinc-400"
+      aria-label="Ver todos los proyectos de Agustín Fussi en GitHub"
     >
       <span>Ver todos los proyectos en GitHub (@agusfussi)</span>
-      <span>→</span>
+      <span aria-hidden="true">→</span>
     </a>
   </div>
 </section>
