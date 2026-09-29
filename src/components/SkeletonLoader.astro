@@ -1,0 +1,81 @@
+---
+// Componente de Skeleton Loading Screen
+---
+
+<div id="skeleton-overlay" class="w-full max-w-[1140px] mx-auto px-[17px] py-[31px] space-y-[43px]">
+  
+  <!-- Skeleton Header & Status -->
+  <div class="flex items-center justify-between py-[11px] border-b border-[#1b253b]">
+    <div class="flex items-center gap-[9px]">
+      <div class="w-[34px] h-[34px] rounded-[5px] skeleton-shimmer"></div>
+      <div class="w-[110px] h-[14px] rounded-[3px] skeleton-shimmer"></div>
+    </div>
+    <div class="flex gap-[7px]">
+      <div class="w-[55px] h-[16px] rounded-[4px] skeleton-shimmer"></div>
+      <div class="w-[62px] h-[16px] rounded-[4px] skeleton-shimmer"></div>
+      <div class="w-[48px] h-[16px] rounded-[4px] skeleton-shimmer"></div>
+      <div class="w-[75px] h-[16px] rounded-[4px] skeleton-shimmer"></div>
+    </div>
+  </div>
+
+  <!-- Skeleton Hero -->
+  <div class="flex flex-col lg:flex-row items-center justify-between gap-[27px] pt-[29px]">
+    <div class="w-full lg:w-[62%] space-y-[15px]">
+      <div class="w-[210px] h-[22px] rounded-[11px] skeleton-shimmer"></div>
+      <div class="w-full h-[42px] rounded-[6px] skeleton-shimmer"></div>
+      <div class="w-[85%] h-[38px] rounded-[6px] skeleton-shimmer"></div>
+      <div class="w-full h-[15px] rounded-[3px] skeleton-shimmer mt-[19px]"></div>
+      <div class="w-[90%] h-[15px] rounded-[3px] skeleton-shimmer"></div>
+      <div class="w-[65%] h-[15px] rounded-[3px] skeleton-shimmer"></div>
+
+      <!-- Skeleton Buttons -->
+      <div class="flex gap-[11px] pt-[19px]">
+        <div class="w-[145px] h-[41px] rounded-[9px] skeleton-shimmer"></div>
+        <div class="w-[125px] h-[41px] rounded-[9px] skeleton-shimmer"></div>
+        <div class="w-[115px] h-[41px] rounded-[9px] skeleton-shimmer"></div>
+      </div>
+    </div>
+
+    <!-- Skeleton Avatar -->
+    <div class="w-[270px] h-[350px] rounded-[17px] skeleton-shimmer shrink-0"></div>
+  </div>
+
+  <!-- Skeleton Services -->
+  <div class="space-y-[19px] pt-[35px]">
+    <div class="w-[180px] h-[24px] mx-auto rounded-[5px] skeleton-shimmer"></div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[17px]">
+      {Array.from({ length: 3 }).map(() => (
+        <div class="p-[21px] rounded-[13px] bg-[#0d1424] border border-[#18233c] space-y-[13px]">
+          <div class="w-[38px] h-[38px] rounded-[8px] skeleton-shimmer"></div>
+          <div class="w-[70%] h-[18px] rounded-[4px] skeleton-shimmer"></div>
+          <div class="w-full h-[11px] rounded-[3px] skeleton-shimmer"></div>
+          <div class="w-[85%] h-[11px] rounded-[3px] skeleton-shimmer"></div>
+          <div class="w-[40%] h-[11px] rounded-[3px] skeleton-shimmer pt-[9px]"></div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Skeleton Projects Cards -->
+  <div class="space-y-[19px] pt-[25px]">
+    <div class="w-[220px] h-[26px] rounded-[5px] skeleton-shimmer"></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[19px]">
+      {Array.from({ length: 2 }).map(() => (
+        <div class="rounded-[15px] bg-[#0e172a] border border-[#192744] overflow-hidden space-y-[15px] pb-[19px]">
+          <div class="w-full h-[175px] skeleton-shimmer"></div>
+          <div class="px-[17px] space-y-[9px]">
+            <div class="w-[60%] h-[19px] rounded-[4px] skeleton-shimmer"></div>
+            <div class="w-full h-[12px] rounded-[3px] skeleton-shimmer"></div>
+            <div class="w-[80%] h-[12px] rounded-[3px] skeleton-shimmer"></div>
+            <div class="flex gap-[7px] pt-[9px]">
+              <div class="w-[45px] h-[17px] rounded-[3px] skeleton-shimmer"></div>
+              <div class="w-[55px] h-[17px] rounded-[3px] skeleton-shimmer"></div>
+              <div class="w-[65px] h-[17px] rounded-[3px] skeleton-shimmer"></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</div>
