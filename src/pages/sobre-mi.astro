@@ -1,0 +1,263 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../data/siteConfig';
+
+const experiences = [
+  {
+    company: "Einge",
+    role: "Pasante de Ingeniería & Desarrollo",
+    period: "Mayo 2024 — Sept. 2024",
+    location: "Rosario, Santa Fe &middot; Híbrido",
+    description: "Experiencia en entorno laboral técnico profesional trabajando con metodologías ágiles y sprints. Participé en el desarrollo del sistema SCADA para el control remoto de un motor diésel y en la implementación de protocolos de comunicación industrial.",
+    tags: ["SCADA", "Modbus RTU", "RS-485", "Metodologías Ágiles", "Sprints", "Control Industrial"]
+  },
+  {
+    company: "GMP Equipamientos",
+    role: "Auxiliar de Logística & Desarrollador de Software",
+    period: "Sept. 2018 — Feb. 2026",
+    location: "Rosario, Santa Fe &middot; Presencial",
+    description: "Asistente logístico en empresa familiar durante temporadas de verano. Diseñé y desarrollé integralmente una aplicación de escritorio personalizada para la automatización de liquidación de sueldos y la administración de vacaciones del personal.",
+    tags: ["Tauri", "React", "TypeScript", "SQLite", "Desktop App", "Logística"]
+  }
+];
+
+const education = [
+  {
+    institution: "Universidad Austral (Argentina)",
+    degree: "Licenciatura en Negocios Digitales",
+    period: "2025 — Presente (2.º año en curso)",
+    location: "Rosario, Argentina",
+    description: "Cursando el segundo año de la carrera con todas las materias del primer año completadas y aprobadas. Formación en la convergencia entre tecnología moderna, desarrollo de productos digitales, innovación estratégica y modelos de negocio escalables.",
+    skills: ["Negocios Digitales", "Innovación", "Estrategia Tecnológica", "Modelado de Negocios"]
+  },
+  {
+    institution: "Escuela Técnica San José (Rosario)",
+    degree: "Técnico en Informática — Egresado 2024",
+    period: "2019 — 2024",
+    location: "Rosario, Argentina",
+    description: "Formación técnica integral de excelencia. Distinguido con el honor académico de ser Escolta de la Bandera Nacional Argentina en el acto de colación. Co-creador del proyecto 'VisionGuide', dispositivo de asistencia visual presentado con reconocimiento en la Expo-Bienal 2023.",
+    skills: ["Técnico en Informática", "Escolta de la Bandera", "Hardware & Arduino", "C++", "Expo-Bienal 2023"],
+    image: "/images/egresados-escolta.jpg",
+    imageCaption: "Distinción como Escolta de la Bandera Nacional Argentina (Colación 2024)"
+  },
+  {
+    institution: "Cambridge Assessment English &middot; Cultural Inglesa",
+    degree: "B2 First Certificate in English (FCE)",
+    period: "2022",
+    location: "Rosario, Argentina",
+    description: "Certificación internacional oficial que acredita competencia intermedia-avanzada en lengua inglesa, permitiendo comunicación técnica fluida, lectura de documentación de vanguardia y colaboración profesional internacional.",
+    skills: ["Inglés Profesional B2", "Comprensión Técnica", "Cambridge Certificate"]
+  }
+];
+---
+
+<Layout 
+  title="Sobre Mí | Agustín Fussi" 
+  description="Conoce más sobre Agustín Fussi: estudiante de Negocios Digitales en Universidad Austral, Técnico en Informática de la Técnica San José y desarrollador de soluciones digitales."
+>
+  <div class="w-11/12 max-w-4xl mx-auto pt-12 pb-24 px-4 sm:px-6">
+    
+    <!-- Breadcrumb / Back Link -->
+    <div class="mb-10">
+      <a 
+        href="/" 
+        class="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors group"
+      >
+        <span class="transition-transform group-hover:-translate-x-1">←</span>
+        <span>Volver al inicio</span>
+      </a>
+    </div>
+
+    <!-- Hero / Profile Card -->
+    <header class="border-b border-zinc-800/80 pb-16 mb-20">
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
+        
+        <!-- Profile Image -->
+        <div class="relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 border-zinc-700 bg-zinc-900 shrink-0 shadow-2xl">
+          <img 
+            src="/images/perfil.jpg" 
+            alt="Agustín Fussi" 
+            class="w-full h-full object-cover object-top"
+          />
+          <div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl pointer-events-none"></div>
+        </div>
+
+        <!-- Bio & Heading -->
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/60 text-zinc-400 text-xs font-mono backdrop-blur-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>Rosario, Santa Fe, Argentina &middot; GMT-3</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+            Agustín Fussi
+          </h1>
+
+          <p class="text-base sm:text-lg text-zinc-300 font-normal leading-relaxed">
+            Estudiante de 2.º año de la <strong>Licenciatura en Negocios Digitales</strong> en la <em>Universidad Austral</em> y <strong>Técnico en Informática</strong> egresado de la <em>Escuela Técnica San José</em>.
+          </p>
+
+          <p class="text-sm sm:text-base text-zinc-400 font-light leading-relaxed">
+            Interesado en la tecnología, la innovación y el desarrollo de soluciones digitales que resuelvan problemas reales. Me considero una persona responsable, respetuosa, con iniciativa propia y alta predisposición para aprender y trabajar en equipo.
+          </p>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="space-y-24">
+      
+      <!-- Section 1: Experiencia Profesional -->
+      <section id="experiencia">
+        <div class="flex items-center justify-between mb-12">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-zinc-100 tracking-tight">
+              Experiencia Profesional
+            </h2>
+            <p class="text-xs sm:text-sm font-mono text-zinc-400 mt-1">
+              Desarrollo de software a medida y entornos técnicos
+            </p>
+          </div>
+          <span class="text-xs font-mono text-zinc-500 hidden sm:inline-block">2 roles</span>
+        </div>
+
+        <div class="relative border-l-2 border-zinc-800 ml-3 md:ml-6 space-y-12">
+          {experiences.map((exp) => (
+            <article class="relative pl-8 group">
+              <!-- Timeline Dot -->
+              <div class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-zinc-200 border-4 border-[#09090b] shadow-[0_0_0_1px_rgba(255,255,255,0.1)]"></div>
+
+              <div class="flex flex-col gap-1 mb-3">
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4">
+                  <h3 class="text-xl sm:text-2xl font-bold text-zinc-100">
+                    {exp.company} — <span class="font-normal text-zinc-400">{exp.role}</span>
+                  </h3>
+                  <span class="text-xs sm:text-sm font-mono text-zinc-500 whitespace-nowrap">
+                    {exp.period}
+                  </span>
+                </div>
+
+                <p class="text-xs text-zinc-500 font-mono" set:html={exp.location} />
+              </div>
+
+              <p class="text-zinc-400 leading-relaxed text-sm sm:text-base mb-4">
+                {exp.description}
+              </p>
+
+              <ul class="flex flex-wrap gap-2">
+                {exp.tags.map((tag) => (
+                  <li class="text-[11px] font-mono px-2.5 py-1 border border-zinc-800 text-zinc-400 rounded-md bg-zinc-900/60">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Section 2: Educación & Formación con Imágenes -->
+      <section id="educacion" class="border-t border-zinc-800/80 pt-20">
+        <div class="mb-12">
+          <h2 class="text-2xl sm:text-3xl font-bold text-zinc-100 tracking-tight">
+            Educación & Distinciones
+          </h2>
+          <p class="text-xs sm:text-sm font-mono text-zinc-400 mt-1">
+            Formación universitaria, mérito académico y certificaciones
+          </p>
+        </div>
+
+        <div class="relative border-l-2 border-zinc-800 ml-3 md:ml-6 space-y-16">
+          {education.map((item) => (
+            <article class="relative pl-8 group">
+              <!-- Timeline Dot -->
+              <div class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-zinc-200 border-4 border-[#09090b] shadow-[0_0_0_1px_rgba(255,255,255,0.1)]"></div>
+
+              <div class="flex flex-col gap-1 mb-3">
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4">
+                  <h3 class="text-xl sm:text-2xl font-bold text-zinc-100">
+                    {item.institution}
+                  </h3>
+                  <span class="text-xs sm:text-sm font-mono text-zinc-500 whitespace-nowrap">
+                    {item.period}
+                  </span>
+                </div>
+                <p class="text-sm font-medium text-zinc-300">
+                  {item.degree} &middot; <span class="text-zinc-500 font-mono text-xs">{item.location}</span>
+                </p>
+              </div>
+
+              <p class="text-zinc-400 leading-relaxed text-sm sm:text-base mb-4">
+                {item.description}
+              </p>
+
+              <ul class="flex flex-wrap gap-2 mb-6">
+                {item.skills.map((skill) => (
+                  <li class="text-[11px] font-mono px-2.5 py-1 border border-zinc-800 text-zinc-400 rounded-md bg-zinc-900/60">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+
+              <!-- Image with caption if present -->
+              {item.image && (
+                <div class="mt-6 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900/80 p-3 max-w-lg shadow-xl">
+                  <div class="relative aspect-[4/3] rounded-lg overflow-hidden border border-zinc-800">
+                    <img 
+                      src={item.image} 
+                      alt={item.imageCaption || item.institution} 
+                      class="w-full h-full object-cover object-center filter brightness-95 hover:brightness-105 transition-all duration-300"
+                    />
+                  </div>
+                  {item.imageCaption && (
+                    <p class="mt-2.5 text-xs font-mono text-zinc-400 text-center">
+                      📷 {item.imageCaption}
+                    </p>
+                  )}
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Section 3: Trayectoria Deportiva & Valores -->
+      <section class="border-t border-zinc-800/80 pt-20">
+        <div class="bg-gradient-to-br from-zinc-900/80 to-zinc-950 border border-zinc-800 rounded-2xl p-8 md:p-10 relative overflow-hidden shadow-xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 text-xs font-mono mb-4">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            <span>Club Gimnasia y Esgrima de Rosario (GER) &middot; Rugby</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-bold text-zinc-100 tracking-tight mb-4">
+            Valores & Deporte Competitivo
+          </h2>
+
+          <p class="text-zinc-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+            Mi formación deportiva en rugby en GER consolidó principios humanos y profesionales que aplico a diario en el desarrollo y la gestión de proyectos: <strong>disciplina</strong> para cumplir plazos y exigencias, <strong>trabajo en equipo</strong> sincronizado y generoso, <strong>resiliencia</strong> para resolver bloqueos bajo presión y <strong>respeto</strong> constante por los demás.
+          </p>
+        </div>
+      </section>
+
+      <!-- Bottom Navigation / CTAs -->
+      <div class="border-t border-zinc-800/80 pt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <a 
+          href="/" 
+          class="w-full sm:w-auto px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors text-sm font-medium text-center"
+        >
+          ← Volver a Proyectos
+        </a>
+
+        <a 
+          href={`mailto:${siteConfig.email}`} 
+          class="w-full sm:w-auto px-6 py-3 rounded-lg bg-zinc-100 text-zinc-950 hover:bg-zinc-300 transition-colors text-sm font-semibold text-center"
+        >
+          Escribir a {siteConfig.email}
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</Layout>

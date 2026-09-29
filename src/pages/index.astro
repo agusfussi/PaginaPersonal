@@ -1,90 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import Services from '../components/Services.astro';
 import Projects from '../components/Projects.astro';
-import Education from '../components/Education.astro';
-import BlogPreview from '../components/BlogPreview.astro';
-import Contact from '../components/Contact.astro';
-import SkeletonLoader from '../components/SkeletonLoader.astro';
+import Technologies from '../components/Technologies.astro';
 import { siteConfig } from '../data/siteConfig';
 ---
 
 <Layout title={siteConfig.title} description={siteConfig.tagline}>
-  
-  <!-- 
-    PRINCIPIO 1: SKELETON
-    Contenedor de Skeleton Screen animado con shimmer mientras se hidrata el contenido
-  -->
-  <div id="skeleton-view" class="block">
-    <div class="max-w-[1140px] mx-auto px-[15px] pt-[15px]">
-      <div class="p-[9px] bg-[#0c1527] border border-[#192640] rounded-[5px] text-[11px] font-mono text-[#5b75a3] flex items-center justify-between">
-        <span>⏳ [Principio: Skeleton Loader] Cargando estructura de datos de la página...</span>
-        <button 
-          id="skip-skeleton-btn" 
-          type="button" 
-          class="tiny-touch-target bg-[#1d4ed8] text-[#ffffff] rounded-[2px] cursor-pointer"
-        >
-          Omitir Espera
-        </button>
-      </div>
-    </div>
-    <SkeletonLoader />
-  </div>
-
-  <!-- Contenedor Principal (oculto brevemente para simular el Skeleton Loader) -->
-  <div id="real-content" class="hidden">
-    <Hero />
-    <Services />
-    <Projects />
-    <Education />
-    <BlogPreview />
-    <Contact />
-  </div>
-
+  <Hero />
+  <Projects />
+  <Technologies />
 </Layout>
-
-<script>
-  // Control interactivo del Skeleton Loader
-  const skeletonView = document.getElementById('skeleton-view');
-  const realContent = document.getElementById('real-content');
-  const toggleBtn = document.getElementById('toggle-skeleton-btn');
-  const skipBtn = document.getElementById('skip-skeleton-btn');
-
-  function showRealContent() {
-    if (skeletonView && realContent) {
-      skeletonView.classList.add('hidden');
-      skeletonView.classList.remove('block');
-      realContent.classList.remove('hidden');
-      realContent.classList.add('block');
-    }
-  }
-
-  function toggleSkeleton() {
-    if (skeletonView && realContent) {
-      if (skeletonView.classList.contains('hidden')) {
-        skeletonView.classList.remove('hidden');
-        skeletonView.classList.add('block');
-        realContent.classList.add('hidden');
-        realContent.classList.remove('block');
-      } else {
-        showRealContent();
-      }
-    }
-  }
-
-  // 1. Simulación automática de Skeleton durante 1.2 segundos al cargar
-  setTimeout(() => {
-    showRealContent();
-  }, 1200);
-
-  // 2. Botón para omitir inmediatamente
-  if (skipBtn) {
-    skipBtn.addEventListener('click', showRealContent);
-  }
-
-  // 3. Botón permanente en Navbar para alternar el Skeleton y demostrar el principio
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', toggleSkeleton);
-  }
-</script>

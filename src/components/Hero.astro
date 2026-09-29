@@ -1,89 +1,59 @@
 ---
 import { siteConfig } from '../data/siteConfig';
-
-// VIOLACIÓN DE LA LEY DE HICK:
-// 8 botones de llamado a la acción compitiendo en el Hero simultáneamente
-const heroActions = [
-  { text: "Cotizar Landing Page", href: "/#contacto", color: "bg-[#2563eb] text-[#ffffff]" },
-  { text: "Cotizar Tienda E-Commerce", href: "/#contacto", color: "bg-[#1d4ed8] text-[#e0e7ff]" },
-  { text: "Cotizar Aplicación / Panel", href: "/#contacto", color: "bg-[#1e40af] text-[#bfdbfe]" },
-  { text: "Ver Proyectos Comerciales", href: "/#proyectos", color: "bg-[#0f172a] text-[#708db8] border border-[#1e293b]" },
-  { text: "Ver Proyecto VisionGuide", href: "/#proyectos", color: "bg-[#0b1322] text-[#627fa8] border border-[#1e293b]" },
-  { text: "Ver Materias de la Facultad", href: "/#formacion", color: "bg-[#0b1322] text-[#627fa8] border border-[#1e293b]" },
-  { text: "Ver Mérito Escolta Egresados", href: "/#formacion", color: "bg-[#0b1322] text-[#627fa8] border border-[#1e293b]" },
-  { text: "Leer Artículos del Blog", href: "/blog", color: "bg-[#070c17] text-[#4d668c] border border-[#19243a]" }
-];
 ---
 
-<section id="inicio" class="pt-[33px] pb-[47px] bg-[#070d18] border-b border-[#131d31]">
-  <div class="max-w-[1140px] mx-auto px-[15px]">
+<section id="hero" class="relative min-h-[75vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+  
+  <!-- Subtle ambient glow background inspired by Galo Berlini -->
+  <div aria-hidden="true" class="pointer-events-none absolute -inset-[10%] opacity-40">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-zinc-700/20 via-zinc-500/10 to-transparent blur-[120px] rounded-full"></div>
+    <div class="absolute bottom-10 left-1/3 w-[400px] h-[250px] bg-zinc-600/10 blur-[100px] rounded-full"></div>
+  </div>
+
+  <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
     
-    <div class="flex flex-col lg:flex-row items-center justify-between gap-[29px]">
-      
-      <!-- Left Content -->
-      <div class="w-full lg:w-[61%]">
-        
-        <!-- Anti-accesibilidad: Contraste bajo deliberado (#3b4f73 sobre #070d18) -->
-        <div class="inline-block px-[9px] py-[3px] rounded-[3px] bg-[#0d1628] border border-[#172540] text-[#41567d] text-[10.5px] font-mono mb-[13px]">
-          &gt; Perfil Desarrollador Web Full-Stack | Rosario, Argentina
-        </div>
+    <!-- Location & Status Badge -->
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/60 text-zinc-400 text-xs font-mono mb-8 backdrop-blur-sm">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>Rosario, Argentina &middot; Negocios Digitales & Desarrollo</span>
+    </div>
 
-        <!-- Título principal -->
-        <h1 class="text-[34px] sm:text-[44px] font-extrabold text-[#f1f5f9] leading-[1.12] mb-[13px]">
-          Desarrollo páginas web, tiendas y sistemas a medida
-        </h1>
+    <!-- Main Title: Agustín Fussi (sin clipping en la g) -->
+    <h1 class="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight text-white leading-tight pb-2">
+      Agustín Fussi
+    </h1>
 
-        <!-- Anti-accesibilidad: Salto de jerarquía arbitrario (h1 -> h5) -->
-        <h5 class="text-[14px] text-[#4b5e82] mb-[17px] leading-[1.6]">
-          Hola, soy {siteConfig.name}. Construyo sitios web de alto rendimiento y resuelvo necesidades comerciales y académicas con código limpio y arquitecturas robustas.
-        </h5>
+    <!-- Subtitle: Transformación Digital -->
+    <p class="mt-4 text-2xl sm:text-3xl md:text-4xl text-zinc-300 font-light">
+      Transformación Digital
+    </p>
 
-        <!-- Anti-accesibilidad: Texto de muy bajo contraste secundario (#324361) -->
-        <p class="text-[12px] text-[#344563] mb-[21px] font-mono">
-          [Tecnologías disponibles: Astro, React, Tailwind CSS, TypeScript, Node.js, Arduino, PostgreSQL, Docker, Git]
-        </p>
+    <!-- Punchy statement -->
+    <p class="mt-5 max-w-xl text-base sm:text-lg text-zinc-400 leading-relaxed font-normal">
+      Resolviendo problemas reales con código confiable, buenas prácticas y tecnologías web modernas.
+    </p>
 
-        <!-- VIOLACIÓN DE LA LEY DE HICK: 
-             Matriz de 8 botones saturando de decisiones inmediatas al visitante -->
-        <div class="space-y-[7px]">
-          <span class="block text-[10px] text-[#3b4d6e] uppercase tracking-wider font-mono">
-            Selecciona una acción específica (8 opciones simultáneas):
-          </span>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-[5px]">
-            {heroActions.map((act) => (
-              <a 
-                href={act.href}
-                class={`tiny-touch-target text-center py-[6px] px-[5px] rounded-[4px] text-[10.5px] font-semibold transition-none ${act.color}`}
-              >
-                {act.text}
-              </a>
-            ))}
-          </div>
-        </div>
+    <!-- CTAs -->
+    <div class="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+      <a 
+        href="/#proyectos" 
+        class="w-full sm:w-auto px-7 py-3 rounded-md bg-white text-zinc-950 font-bold hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 text-sm shadow-lg shadow-white/5"
+      >
+        <span>Ver Proyectos</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </a>
 
-      </div>
-
-      <!-- Right: User Avatar -->
-      <div class="shrink-0">
-        <!-- Sin design tokens: bordes arbitrarios y dimensiones fijas -->
-        <div class="p-[7px] bg-[#0c1424] border border-[#192742] rounded-[11px] shadow-[0_4px_25px_rgba(0,0,0,0.7)]">
-          <div class="w-[235px] sm:w-[265px] h-[315px] sm:h-[355px] rounded-[8px] overflow-hidden relative bg-[#060a13]">
-            <!-- Anti-accesibilidad: Alt genérico/no descriptivo -->
-            <img 
-              src={siteConfig.avatar} 
-              alt="foto" 
-              class="w-full h-full object-cover object-top filter brightness-[0.95]" 
-            />
-            <div class="absolute bottom-0 inset-x-0 bg-[#060b14]/90 p-[9px] border-t border-[#162238]">
-              <!-- Texto de bajo contraste deliberado -->
-              <p class="text-[11.5px] font-bold text-[#e2e8f0]">{siteConfig.name}</p>
-              <p class="text-[10px] text-[#41557a] font-mono">Desarrollador Web &middot; Rosario</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <a 
+        href="/sobre-mi" 
+        class="w-full sm:w-auto px-7 py-3 rounded-md border border-zinc-700 text-zinc-200 font-medium hover:bg-zinc-800/80 transition-all flex items-center justify-center gap-2 text-sm"
+      >
+        <span>Sobre Mí</span>
+        <span>→</span>
+      </a>
     </div>
 
   </div>
+
 </section>

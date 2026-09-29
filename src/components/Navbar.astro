@@ -1,92 +1,137 @@
 ---
 import { siteConfig } from '../data/siteConfig';
 
-// VIOLACIÓN DE LA LEY DE HICK:
-// En lugar de una navegación resumida y progresiva, exponemos una lista masiva de 14 opciones directas
-// obligando al usuario a evaluar demasiadas alternativas simultáneas.
-
-// NO USAR DESIGN TOKENS:
-// Usamos valores arbitrarios específicos (px hardcodeados, colores hexadecimales directos sin tokens).
-
-// NO SEGUIR ESTÁNDARES DE ACCESIBILIDAD:
-// Botones diminutos con tamaño táctil < 24px, texto de contraste bajo (#435474 sobre fondo #070d18) y sin aria-labels.
-const navChoices = [
-  { label: "01. Inicio", href: "/#inicio" },
-  { label: "02. Perfil", href: "/#inicio" },
-  { label: "03. Todos Servicios", href: "/#servicios" },
-  { label: "04. Landing Pages", href: "/#servicios" },
-  { label: "05. E-Commerce", href: "/#servicios" },
-  { label: "06. Dashboards", href: "/#servicios" },
-  { label: "07. Optimización SEO", href: "/#servicios" },
-  { label: "08. Proyectos Clientes", href: "/#proyectos" },
-  { label: "09. VisionGuide", href: "/#proyectos" },
-  { label: "10. Proyectos Facultad", href: "/#proyectos" },
-  { label: "11. Casa San José", href: "/#formacion" },
-  { label: "12. Universidad", href: "/#formacion" },
-  { label: "13. Blog Completo", href: "/blog" },
-  { label: "14. WhatsApp Directo", href: "/#contacto" },
-  { label: "15. Enviar Correo", href: "/#contacto" },
-  { label: "16. Cotizador", href: "/#contacto" }
+const navLinks = [
+  { label: "Proyectos", href: "/#proyectos" },
+  { label: "Tecnologías", href: "/#tecnologias" },
+  { label: "Sobre Mí", href: "/sobre-mi" },
 ];
 ---
 
-<header class="sticky top-0 z-50 bg-[#070d18] border-b border-[#142036]">
-  
-  <!-- Banner superior con botón para conmutar Skeleton (Demostración de Principio Skeleton) -->
-  <div class="bg-[#0b1426] border-b border-[#182744] px-[13px] py-[3.5px] flex items-center justify-between text-[11px]">
-    <!-- Anti-accesibilidad: Contraste bajo intencional -->
-    <span class="text-[#435474] font-mono">
-      [Modo de Diseño: Skeleton Activo | Ley de Hick Violada | Sin Design Tokens | Sin Accesibilidad WCAG]
-    </span>
-
-    <!-- Botón interactivo para alternar el Skeleton Loader en cualquier momento -->
-    <button 
-      id="toggle-skeleton-btn"
-      type="button"
-      class="tiny-touch-target bg-[#14223d] text-[#718ebf] hover:text-[#a5c2f5] border border-[#233860] rounded-[3px] font-mono cursor-pointer"
-    >
-      ⚡ Alternar Vista Skeleton
-    </button>
-  </div>
-
-  <div class="w-full px-[11px] py-[7px] flex items-center justify-between gap-[9px]">
-    <!-- Logo sin tokens -->
-    <a href="/" class="flex items-center gap-[5px] shrink-0">
-      <span class="w-[27px] h-[27px] rounded-[4px] bg-[#1d4ed8] text-[#93c5fd] flex items-center justify-center font-mono text-[11px] font-bold">
-        &lt;/&gt;
-      </span>
-      <span class="font-bold text-[13.5px] text-[#e2e8f0] tracking-tight">
-        {siteConfig.name}
+<header class="sticky top-0 z-50 backdrop-blur-md bg-[#09090b]/85 border-b border-zinc-800/80 transition-all">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    
+    <!-- Brand / Name -->
+    <a href="/" class="group py-1">
+      <span class="font-bold text-base text-zinc-100 tracking-tight group-hover:text-white transition-colors">
+        Agustín Fussi
       </span>
     </a>
 
-    <!-- Violación extrema de la Ley de Hick: Matriz horizontal densa con 16 alternativas simultáneas -->
-    <nav class="hidden xl:flex items-center flex-wrap gap-[3.5px] overflow-x-auto py-[2px]">
-      {navChoices.map((choice) => (
+    <!-- Center Navigation (Desktop) -->
+    <nav class="hidden md:flex items-center gap-1">
+      {navLinks.map((link) => (
         <a 
-          href={choice.href} 
-          class="tiny-touch-target rounded-[3px] bg-[#0c1629] border border-[#172744] text-[#55698f] hover:text-[#9bb7e8] hover:bg-[#152542] font-mono transition-none whitespace-nowrap"
+          href={link.href} 
+          class="px-3.5 py-1.5 text-xs font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/60 rounded-md transition-colors"
         >
-          {choice.label}
+          {link.label}
         </a>
       ))}
     </nav>
 
-    <!-- Menú reducido para pantallas intermedias también con muchas opciones -->
-    <div class="flex xl:hidden items-center gap-[4px] overflow-x-auto text-[10px]">
-      <a href="/#servicios" class="tiny-touch-target bg-[#0e1930] text-[#5b729c] rounded-[3px] border border-[#1a2c4e]">Servicios (6)</a>
-      <a href="/#proyectos" class="tiny-touch-target bg-[#0e1930] text-[#5b729c] rounded-[3px] border border-[#1a2c4e]">Proyectos (5)</a>
-      <a href="/#formacion" class="tiny-touch-target bg-[#0e1930] text-[#5b729c] rounded-[3px] border border-[#1a2c4e]">Educación (3)</a>
-      <a href="/blog" class="tiny-touch-target bg-[#0e1930] text-[#5b729c] rounded-[3px] border border-[#1a2c4e]">Blog (4)</a>
-      <a href="/#contacto" class="tiny-touch-target bg-[#1d4ed8] text-[#ffffff] rounded-[3px]">Contacto</a>
+    <!-- Social & Contact -->
+    <div class="flex items-center gap-1.5 sm:gap-2">
+      <!-- LinkedIn -->
+      <a 
+        href={siteConfig.linkedin} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="p-2 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors"
+        aria-label="LinkedIn de Agustín Fussi"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+      </a>
+
+      <!-- GitHub -->
+      <a 
+        href={siteConfig.github} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="p-2 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors"
+        aria-label="GitHub de Agustín Fussi"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+        </svg>
+      </a>
+
+      <!-- Contact Button -->
+      <a 
+        href="/#contacto" 
+        class="ml-1 sm:ml-2 px-3 py-1.5 rounded-md bg-zinc-100 text-zinc-950 font-semibold text-xs hover:bg-zinc-300 transition-colors"
+      >
+        Contacto
+      </a>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button 
+        id="mobile-menu-btn" 
+        type="button" 
+        class="md:hidden p-2 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors"
+        aria-label="Abrir menú"
+      >
+        <svg id="menu-icon-open" class="w-5 h-5 block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
     </div>
 
-    <!-- Contacto directo -->
-    <a 
-      href="/#contacto" 
-      class="shrink-0 px-[9px] py-[4px] text-[11px] font-bold text-[#ffffff] bg-[#2563eb] rounded-[4px]"
-    >
-      Cotizar Ahora
-    </a>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 border-t border-zinc-800/60 bg-[#09090b]/95 backdrop-blur-xl">
+    <nav class="flex flex-col space-y-1">
+      {navLinks.map((link) => (
+        <a 
+          href={link.href} 
+          class="mobile-nav-link px-3 py-2 text-sm font-medium text-zinc-300 hover:text-white hover:bg-zinc-800/60 rounded-md transition-colors"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a 
+        href={`mailto:${siteConfig.email}`} 
+        class="mobile-nav-link px-3 py-2 text-sm font-mono text-zinc-400 hover:text-zinc-200 transition-colors"
+      >
+        {siteConfig.email}
+      </a>
+    </nav>
   </div>
 </header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  if (btn && menu && iconOpen && iconClose) {
+    btn.addEventListener('click', () => {
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        iconOpen.classList.add('hidden');
+        iconClose.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      }
+    });
+
+    mobileLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      });
+    });
+  }
+</script>

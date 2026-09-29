@@ -1,180 +1,194 @@
 ---
-import { projectsData } from '../data/projects';
-
-// VIOLACIÓN EXTREMA DE LA LEY DE HICK:
-// 22 filtros granulares visibles simultáneamente en lugar de 3 o 4 categorías limpias.
-// El tiempo del usuario para decidir qué botón apretar aumenta exponencialmente.
-const granularFilters = [
-  "Todos",
-  "Astro",
-  "React",
-  "Tailwind CSS",
-  "TypeScript",
-  "JavaScript",
-  "Arduino",
-  "C++",
-  "Sensores Ultrasónicos",
-  "Impresión 3D",
-  "Node.js",
-  "Express",
-  "PostgreSQL",
-  "Docker",
-  "JWT Auth",
-  "Comercial",
-  "E-commerce",
-  "Facultad / Académico",
-  "Secundaria Técnica",
-  "Landing Page",
-  "Dashboard",
-  "Accesibilidad"
-];
+import { realProjects } from '../data/projects';
 ---
 
-<section id="proyectos" class="py-[37px] bg-[#060a13] border-b border-[#131d31]">
-  <div class="max-w-[1140px] mx-auto px-[15px]">
-    
-    <div class="mb-[23px]">
-      <!-- Anti-accesibilidad: Contraste bajo deliberado -->
-      <span class="text-[10px] font-mono text-[#384c6e] uppercase tracking-wider bg-[#0a1120] border border-[#131f36] px-[7px] py-[2px] rounded-[3px]">
-        Catálogo Completo de Desarrollos
-      </span>
-      <h2 class="text-[26px] sm:text-[32px] font-extrabold text-[#f1f5f9] mt-[9px]">
-        Proyectos Realizados & Prototipos
-      </h2>
-      <!-- Anti-accesibilidad: Texto gris de muy bajo contraste (#3d5073) -->
-      <p class="text-[#3d5073] text-[12.5px] mt-[5px] max-w-[800px]">
-        Selecciona entre los 22 criterios técnicos y funcionales disponibles a continuación para filtrar la lista:
-      </p>
-    </div>
+<section id="proyectos" class="w-11/12 max-w-4xl mx-auto my-28 px-4 sm:px-6">
+  <div class="text-center mb-16">
+    <h2 class="text-3xl md:text-4xl font-bold text-zinc-100 tracking-tight">
+      Proyectos & Desarrollos
+    </h2>
+    <p class="mt-3 text-zinc-400 text-sm md:text-base max-w-lg mx-auto">
+      Soluciones reales creadas con código limpio, arquitectura sólida e interfaces funcionales.
+    </p>
+  </div>
 
-    <!-- VIOLACIÓN DE LA LEY DE HICK: 
-         Matriz masiva de 22 opciones de filtro simultáneas -->
-    <div class="mb-[27px] p-[11px] bg-[#09101e] border border-[#142036] rounded-[7px]">
-      <span class="block text-[9.5px] font-mono text-[#3b4d6e] mb-[7px]">
-        Filtros disponibles ({granularFilters.length} opciones):
-      </span>
-      <div class="flex flex-wrap gap-[4px]" id="granular-project-filters">
-        {granularFilters.map((filt, idx) => (
-          <button
-            type="button"
-            data-filter={filt}
-            class={`granular-filter-btn tiny-touch-target rounded-[3px] font-mono transition-none cursor-pointer ${
-              idx === 0 
-                ? 'bg-[#2563eb] text-[#ffffff]' 
-                : 'bg-[#0d1628] text-[#4d638a] hover:text-[#93b4e8] border border-[#16233b]'
-            }`}
-          >
-            {filt}
-          </button>
-        ))}
-      </div>
-    </div>
+  <div class="space-y-20 md:space-y-24">
+    {realProjects.map((project, idx) => {
+      const isEven = idx % 2 === 1;
+      const targetUrl = project.liveUrl || project.githubUrl;
 
-    <!-- Grid de Proyectos -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-[17px]" id="projects-grid">
-      {projectsData.map((project) => (
-        <article 
-          class="project-item rounded-[9px] bg-[#0a101d] border border-[#141e33] overflow-hidden flex flex-col justify-between"
-          data-tags={JSON.stringify([...project.tags, project.category, project.title])}
-        >
-          <!-- Mockup Header / Image -->
-          <div class="h-[175px] bg-[#0c1424] relative overflow-hidden border-b border-[#141f34]">
-            {project.image ? (
-              <img 
-                src={project.image} 
-                alt="" 
-                class="w-full h-full object-cover filter brightness-[0.8]" 
-              />
+      return (
+        <article class={`flex flex-col gap-8 items-center ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
+          
+          {/* Image / Visual Mockup */}
+          <div class="w-full md:w-[48%]">
+            {targetUrl ? (
+              <a 
+                href={targetUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="block relative aspect-video rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-xl group hover:border-zinc-600 transition-all duration-300"
+                aria-label={`Visitar ${project.title}`}
+              >
+                {project.image ? (
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 filter brightness-95" 
+                  />
+                ) : (
+                  <div class="w-full h-full flex flex-col justify-between p-6 bg-gradient-to-br from-zinc-900 via-zinc-950 to-zinc-900 border border-zinc-800/40">
+                    <div class="flex items-center justify-between text-xs text-zinc-500 font-mono">
+                      <div class="flex gap-1.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                      </div>
+                      {project.liveUrl && (
+                        <span class="text-[11px] text-zinc-400 truncate max-w-[160px]">
+                          {project.liveUrl.replace('https://', '')}
+                        </span>
+                      )}
+                    </div>
+                    <div class="py-4">
+                      <p class="font-bold text-lg text-zinc-200 group-hover:text-white transition-colors">{project.title}</p>
+                      <p class="text-xs text-zinc-400 mt-1">{project.subtitle}</p>
+                    </div>
+                    <div class="flex items-center gap-1 text-xs text-emerald-400 font-mono">
+                      <span>Abrir proyecto</span>
+                      <span class="transition-transform group-hover:translate-x-1">→</span>
+                    </div>
+                  </div>
+                )}
+
+                {project.highlight && (
+                  <div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-zinc-950/80 backdrop-blur-md border border-zinc-800 text-[10px] font-mono text-zinc-300 font-medium">
+                    {project.highlight}
+                  </div>
+                )}
+              </a>
             ) : (
-              <div class="w-full h-full flex items-center justify-center bg-[#0d1526]">
-                <span class="font-mono text-[11px] text-[#344565]">
-                  {project.category} &middot; {project.id}
-                </span>
+              <div class="relative aspect-video rounded-xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-zinc-900 via-zinc-950 to-zinc-900 p-6 flex flex-col justify-between shadow-xl">
+                <div class="flex items-center justify-between text-xs text-zinc-500 font-mono">
+                  <div class="flex gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                  </div>
+                  <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-400 border border-zinc-700">
+                    Desktop App
+                  </span>
+                </div>
+                <div>
+                  <p class="font-bold text-lg text-zinc-200">{project.title}</p>
+                  <p class="text-xs text-zinc-400 mt-1">{project.subtitle}</p>
+                </div>
+                <div class="text-[11px] font-mono text-zinc-500 flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500/80"></span>
+                  <span>En producción privada en empresa familiar</span>
+                </div>
               </div>
             )}
-            
-            <div class="absolute top-[7px] left-[7px] flex gap-[3px]">
-              <span class="tiny-touch-target rounded-[2px] bg-[#080d17]/90 text-[#4c638a] border border-[#17253e] font-mono">
-                {project.category}
-              </span>
-            </div>
           </div>
 
-          <!-- Body -->
-          <div class="p-[15px] flex flex-col flex-grow justify-between">
+          {/* Description & Details */}
+          <div class="w-full md:w-[52%] flex flex-col space-y-4">
             <div>
-              <!-- Anti-accesibilidad: Salto a h6 desordenado -->
-              <h6 class="text-[15.5px] font-bold text-[#e2e8f0] mb-[7px]">
-                {project.title}
-              </h6>
-
-              <!-- Anti-accesibilidad: Contraste insuficiente (#4a5d80) -->
-              <p class="text-[#4a5d80] text-[12px] leading-[1.5] mb-[11px]">
-                {project.description}
-              </p>
-
-              <!-- Tags con contraste muy sutil -->
-              <div class="flex flex-wrap gap-[3px] mb-[13px]">
-                {project.tags.map((tag) => (
-                  <span class="text-[9.5px] font-mono px-[5px] py-[1.5px] rounded-[2px] bg-[#0e1627] text-[#3f5375] border border-[#172338]">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <span class="text-[11px] font-mono uppercase tracking-widest text-zinc-500 font-semibold">
+                {project.subtitle}
+              </span>
+              
+              {targetUrl ? (
+                <h3 class="text-2xl font-bold text-zinc-100 mt-1 tracking-tight">
+                  <a 
+                    href={targetUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="hover:text-white transition-colors inline-flex items-center gap-2 group"
+                  >
+                    <span>{project.title}</span>
+                    <svg class="w-4 h-4 text-zinc-500 group-hover:text-zinc-300 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                    </svg>
+                  </a>
+                </h3>
+              ) : (
+                <h3 class="text-2xl font-bold text-zinc-100 mt-1 tracking-tight">
+                  {project.title}
+                </h3>
+              )}
             </div>
 
-            <!-- Botones sin tokens y con contraste bajo -->
-            <div class="pt-[9px] border-t border-[#121b2d] flex gap-[7px]">
+            <p class="text-sm md:text-base text-zinc-400 leading-relaxed">
+              {project.description}
+            </p>
+
+            {/* Tags */}
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              {project.tags.map((tag) => (
+                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-400">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Action Links: Only real working destinations */}
+            <div class="pt-3 flex flex-wrap items-center gap-3">
               {project.liveUrl && (
                 <a 
                   href={project.liveUrl} 
                   target="_blank" 
-                  class="tiny-touch-target bg-[#1d4ed8] text-[#ffffff] rounded-[3px] font-semibold"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white text-zinc-950 text-xs font-semibold hover:bg-zinc-200 transition-all shadow-sm"
                 >
-                  Demo Online
+                  <span>Visitar Sitio Web</span>
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                  </svg>
                 </a>
               )}
+
               {project.githubUrl && (
                 <a 
                   href={project.githubUrl} 
                   target="_blank" 
-                  class="tiny-touch-target bg-[#0e172a] text-[#556e96] border border-[#19263d] rounded-[3px]"
+                  rel="noopener noreferrer"
+                  class={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-mono transition-all ${
+                    project.liveUrl 
+                      ? 'border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 bg-zinc-900/60' 
+                      : 'border border-zinc-700 text-zinc-200 hover:text-white hover:bg-zinc-800/80 bg-zinc-900'
+                  }`}
                 >
-                  Repositorio / Código
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                  </svg>
+                  <span>{project.liveUrl ? 'Código' : 'Ver en GitHub'}</span>
                 </a>
+              )}
+
+              {!project.liveUrl && !project.githubUrl && (
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900/60 text-zinc-500 text-xs font-mono">
+                  <span>Código de uso privado</span>
+                </span>
               )}
             </div>
           </div>
-        </article>
-      ))}
-    </div>
 
+        </article>
+      );
+    })}
+  </div>
+
+  {/* Link to see more repos on GitHub */}
+  <div class="mt-20 text-center">
+    <a 
+      href="https://github.com/agusfussi?tab=repositories" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-800 text-xs font-medium text-zinc-400 hover:text-white hover:border-zinc-600 hover:bg-zinc-900/60 transition-all font-mono"
+    >
+      <span>Ver todos los proyectos en GitHub (@agusfussi)</span>
+      <span>→</span>
+    </a>
   </div>
 </section>
-
-<script>
-  const buttons = document.querySelectorAll('.granular-filter-btn');
-  const items = document.querySelectorAll('.project-item');
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => {
-        b.classList.remove('bg-[#2563eb]', 'text-[#ffffff]');
-        b.classList.add('bg-[#0d1628]', 'text-[#4d638a]');
-      });
-      btn.classList.add('bg-[#2563eb]', 'text-[#ffffff]');
-      btn.classList.remove('bg-[#0d1628]', 'text-[#4d638a]');
-
-      const selected = btn.getAttribute('data-filter') || 'Todos';
-
-      items.forEach(item => {
-        const itemTags = item.getAttribute('data-tags') || '';
-        if (selected === 'Todos' || itemTags.toLowerCase().includes(selected.toLowerCase())) {
-          (item as HTMLElement).style.display = 'flex';
-        } else {
-          (item as HTMLElement).style.display = 'none';
-        }
-      });
-    });
-  });
-</script>

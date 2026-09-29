@@ -40,14 +40,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
-
-    <!-- Google Fonts Inter -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -61,12 +54,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
       }
     </style>
   </head>
-  <body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col selection:bg-cyan-500/20 selection:text-cyan-300">
+  <body class="bg-[#09090b] text-zinc-100 min-h-screen flex flex-col selection:bg-zinc-800 selection:text-white antialiased">
+    
     <!-- Background subtle ambient lighting -->
     <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
-      <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-cyan-600/10 via-indigo-600/10 to-purple-600/10 blur-[130px] rounded-full"></div>
-      <div class="absolute top-[35%] -left-32 w-[500px] h-[300px] bg-blue-600/5 blur-[120px] rounded-full"></div>
-      <div class="absolute top-[65%] -right-32 w-[500px] h-[300px] bg-cyan-600/5 blur-[120px] rounded-full"></div>
+      <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-zinc-700/10 via-zinc-800/5 to-transparent blur-[140px] rounded-full"></div>
     </div>
 
     <Navbar />

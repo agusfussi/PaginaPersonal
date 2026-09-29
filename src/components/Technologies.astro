@@ -1,0 +1,42 @@
+---
+const techCategories = [
+  {
+    category: "Front-end & Diseño",
+    items: ["HTML5", "CSS3", "JavaScript", "React", "Tailwind CSS", "Figma", "Canva"]
+  },
+  {
+    category: "Back-end & Software",
+    items: ["Node.js", "C++", "C# / .NET", "Python (básico)", "Tauri", "SQLite"]
+  },
+  {
+    category: "Móvil, Hardware & Protocolos",
+    items: ["Flutter", "Arduino", "Sensores Ultrasónicos", "SCADA", "Modbus RTU & RS-485", "Git & GitHub"]
+  }
+];
+---
+
+<section id="tecnologias" class="w-11/12 max-w-4xl mx-auto my-28 px-4 sm:px-6">
+  <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center text-zinc-100 tracking-tight">
+    Conocimientos & Tecnologías
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+    {techCategories.map((col) => (
+      <div>
+        <h3 class="text-zinc-500 text-xs uppercase tracking-[0.2em] font-bold mb-6">
+          {col.category}
+        </h3>
+        <ul class="space-y-4">
+          {col.items.map((item) => (
+            <li class="flex items-center gap-3 text-base md:text-lg font-medium group">
+              <div class="h-1.5 w-1.5 rounded-full bg-zinc-600 group-hover:bg-zinc-200 transition-colors"></div>
+              <span class="text-zinc-400 group-hover:text-zinc-100 transition-colors cursor-default">
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>

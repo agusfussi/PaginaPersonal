@@ -1,0 +1,70 @@
+---
+const experiences = [
+  {
+    role: "Pasante de Ingeniería & Desarrollo",
+    company: "Einge",
+    period: "Mayo 2024 — Sept. 2024",
+    location: "Rosario, Santa Fe &middot; Híbrido",
+    description: "Experiencia en entorno laboral técnico profesional con metodologías ágiles y sprints. Participé en el desarrollo SCADA para el control remoto de un motor diésel y la implementación de protocolos industriales de comunicación.",
+    tags: ["SCADA", "Modbus RTU", "RS-485", "Metodologías Ágiles", "Sprints"]
+  },
+  {
+    role: "Auxiliar de Logística & Desarrollador",
+    company: "GMP Equipamientos",
+    period: "Sept. 2018 — Feb. 2026",
+    location: "Rosario, Santa Fe &middot; Presencial",
+    description: "Asistente logístico en empresa familiar durante temporadas de verano. Diseñé y desarrollé desde cero una aplicación de escritorio personalizada para la administración de vacaciones y liquidación de sueldos de los empleados.",
+    tags: ["Tauri", "React", "TypeScript", "SQLite", "Logística"]
+  }
+];
+---
+
+<section id="experiencia" class="w-11/12 max-w-4xl mx-auto my-24 px-4 sm:px-6">
+  <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center text-zinc-100 tracking-tight">
+    Experiencia Profesional
+  </h2>
+
+  <div class="relative border-l-2 border-zinc-800 ml-3 md:ml-10">
+    {experiences.map((exp) => (
+      <article class="relative pl-8 pb-16 md:pb-20 last:pb-0 group">
+        
+        <!-- Timeline dot -->
+        <div class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-zinc-200 border-4 border-[#09090b] shadow-[0_0_0_1px_rgba(255,255,255,0.1)]"></div>
+
+        <div class="flex flex-col gap-1 mb-4">
+          <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-1 md:gap-4">
+            <h3 class="text-xl md:text-2xl font-bold text-zinc-100 leading-tight">
+              {exp.company} — <span class="font-normal text-zinc-400">{exp.role}</span>
+            </h3>
+            <span class="text-xs md:text-sm font-mono text-zinc-500 whitespace-nowrap">
+              {exp.period}
+            </span>
+          </div>
+
+          <span class="text-xs text-zinc-500 font-medium flex items-center gap-1.5 font-mono" set:html={`
+            <svg class="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            ${exp.location}
+          `} />
+        </div>
+
+        <div class="space-y-4">
+          <p class="text-zinc-400 leading-relaxed text-sm md:text-base">
+            {exp.description}
+          </p>
+
+          <ul class="flex flex-wrap gap-2">
+            {exp.tags.map((tag) => (
+              <li class="text-[10px] md:text-xs font-mono px-2.5 py-1 border border-zinc-800 text-zinc-400 rounded-md bg-zinc-900/60">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </article>
+    ))}
+  </div>
+</section>

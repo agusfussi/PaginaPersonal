@@ -6,24 +6,20 @@ export interface SiteConfig {
   aboutShort: string;
   location: string;
   email: string;
-  whatsapp: string;
   github: string;
   linkedin: string;
-  availableForHire: boolean;
   avatar: string;
 }
 
 export const siteConfig: SiteConfig = {
-  name: "Agustín", // Puedes colocar tu nombre y apellido completo aquí
-  title: "Agustín | Desarrollador Web Full Stack & Portfolio",
-  role: "Desarrollador Web & Estudiante de Sistemas",
-  tagline: "Creo páginas web modernas, rápidas y optimizadas para hacer crecer negocios y proyectos.",
-  aboutShort: "Desarrollador enfocado en soluciones web modernas, de alto rendimiento y diseño cuidado. Combino una sólida base técnica y académica con proyectos de impacto real.",
-  location: "Rosario, Argentina (Disponible remoto para todo el mundo)",
-  email: "contacto@agustin.dev", // Cambia por tu email real
-  whatsapp: "+5493410000000", // Cambia por tu número de WhatsApp
-  github: "https://github.com/",
-  linkedin: "https://linkedin.com/in/",
-  availableForHire: true,
+  name: "Agustín Fussi",
+  title: "Agustín Fussi | Negocios Digitales & Técnico en Informática",
+  role: "Negocios Digitales & Técnico en Informática",
+  tagline: "Desarrollo soluciones digitales, software a medida y proyectos tecnológicos con impacto real.",
+  aboutShort: "Estudiante de 2.º año de la Licenciatura en Negocios Digitales en la Universidad Austral y Técnico en Informática egresado de la Escuela Técnica San José. Enfocado en tecnología, innovación y soluciones digitales.",
+  location: "Rosario, Argentina &middot; GMT-3",
+  email: "agusfussiwork@gmail.com",
+  github: "https://github.com/agusfussi",
+  linkedin: "https://www.linkedin.com/in/agustin-fussi-b0175b314/",
   avatar: "/images/perfil.jpg",
 };

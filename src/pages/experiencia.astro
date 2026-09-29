@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Experience from '../components/Experience.astro';
+import { siteConfig } from '../data/siteConfig';
+---
+
+<Layout 
+  title="Experiencia Profesional | Agustín Fussi" 
+  description="Trayectoria laboral técnica en desarrollo SCADA, protocolos industriales y aplicaciones de escritorio personalizadas."
+>
+  <div class="w-11/12 max-w-4xl mx-auto pt-12 pb-24 px-4 sm:px-6">
+    
+    <!-- Breadcrumb / Back link -->
+    <div class="mb-10">
+      <a 
+        href="/" 
+        class="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors group"
+      >
+        <span class="transition-transform group-hover:-translate-x-1">←</span>
+        <span>Volver al inicio</span>
+      </a>
+    </div>
+
+    <!-- Header Section -->
+    <header class="mb-12 border-b border-zinc-800/80 pb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/60 text-zinc-400 text-xs font-mono mb-6 backdrop-blur-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        <span>Trayectoria Laboral &middot; Rosario, Argentina</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white">
+        Experiencia Profesional
+      </h1>
+      
+      <p class="mt-5 text-lg sm:text-xl text-zinc-400 font-light max-w-2xl leading-relaxed">
+        Soluciones prácticas para problemas reales en entornos técnicos e industriales, trabajando con metodologías ágiles y software moderno.
+      </p>
+    </header>
+
+    <!-- Content -->
+    <Experience />
+
+    <!-- Bottom navigation / CTA -->
+    <div class="border-t border-zinc-800/80 pt-12 mt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <a 
+        href="/" 
+        class="w-full sm:w-auto px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors text-sm font-medium text-center"
+      >
+        ← Volver al inicio
+      </a>
+
+      <a 
+        href={`mailto:${siteConfig.email}`} 
+        class="w-full sm:w-auto px-6 py-3 rounded-lg bg-zinc-100 text-zinc-950 hover:bg-zinc-300 transition-colors text-sm font-semibold text-center"
+      >
+        Contactar por Email
+      </a>
+    </div>
+
+  </div>
+</Layout>
