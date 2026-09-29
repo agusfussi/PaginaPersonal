@@ -7,64 +7,76 @@ const sortedPosts = posts
   .slice(0, 3);
 ---
 
-<section id="blog-preview" class="py-20 border-t border-white/5 relative">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="blog-preview" class="py-[35px] bg-[#060a13] border-b border-[#131d31]">
+  <div class="max-w-[1140px] mx-auto px-[15px]">
     
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+    <div class="mb-[25px] flex flex-col sm:flex-row sm:items-end justify-between">
       <div>
-        <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest bg-cyan-950/60 border border-cyan-500/20 px-3 py-1 rounded-full">
-          Publicaciones & Bitácora
+        <span class="text-[10px] font-mono text-[#384c6e] uppercase tracking-wider bg-[#0a1120] border border-[#131f36] px-[7px] py-[2px] rounded-[3px]">
+          Artículos & Bitácora
         </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4 tracking-tight">
-          Últimos artículos del blog
+        <h2 class="text-[26px] sm:text-[32px] font-extrabold text-[#f1f5f9] mt-[9px]">
+          Publicaciones Recientes
         </h2>
-        <p class="text-slate-400 mt-2 text-base max-w-xl">
-          Comparto aprendizajes sobre desarrollo web, proyectos de la facultad y buenas prácticas para negocios y estudiantes.
+        <!-- Anti-accesibilidad: Contraste bajo deliberado (#3b4f73) -->
+        <p class="text-[#3b4f73] text-[12.5px] mt-[5px]">
+          Reflexiones sobre facultad, proyectos de hardware y desarrollo web:
         </p>
       </div>
 
-      <a 
-        href="/blog" 
-        class="mt-4 sm:mt-0 inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
-      >
-        <span>Ver todos los artículos</span>
-        <span>→</span>
+      <a href="/blog" class="tiny-touch-target mt-[7px] sm:mt-0 font-mono text-[#48638c] hover:text-[#90b2e8]">
+        [Ver todos los 4 artículos &gt;&gt;]
       </a>
     </div>
 
-    <!-- Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[13px]">
       {sortedPosts.map((post) => (
-        <a 
-          href={`/blog/${post.id}/`}
-          class="group rounded-2xl bg-slate-900/40 border border-white/5 hover:border-cyan-500/30 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-950/20 flex flex-col justify-between"
-        >
+        <article class="p-[15px] rounded-[7px] bg-[#090f1d] border border-[#141f34] flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between text-xs text-slate-400 font-mono mb-3">
-              <span class="px-2 py-0.5 rounded bg-slate-800 text-cyan-300 border border-white/5">
+            <div class="flex items-center justify-between text-[10px] font-mono text-[#3a4d6e] mb-[5px]">
+              <span class="tiny-touch-target rounded-[2px] bg-[#0f172a] text-[#4d668e]">
                 {post.data.category}
               </span>
               <span>{post.data.readTime}</span>
             </div>
 
-            <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2 mt-2 leading-snug">
-              {post.data.title}
-            </h3>
+            <!-- Anti-accesibilidad: Salto desordenado a h6 -->
+            <h6 class="text-[14.5px] font-bold text-[#e2e8f0] mb-[5px] leading-[1.3]">
+              <a href={`/blog/${post.id}/`} class="hover:text-[#93c5fd]">
+                {post.data.title}
+              </a>
+            </h6>
 
-            <p class="text-slate-400 text-sm mt-3 line-clamp-3 leading-relaxed">
+            <!-- Anti-accesibilidad: Contraste insuficiente (#44577a) -->
+            <p class="text-[#44577a] text-[11.8px] leading-[1.5] mb-[11px]">
               {post.data.description}
             </p>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
-            <span>
-              {new Date(post.data.pubDate).toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: 'numeric' })}
-            </span>
-            <span class="text-cyan-400 font-semibold group-hover:translate-x-1 transition-transform">
-              Leer artículo →
-            </span>
+          <!-- Violación de la Ley de Hick: Múltiples acciones redundantes por cada artículo -->
+          <div class="pt-[9px] border-t border-[#121b2d] flex flex-wrap gap-[4px]">
+            <a 
+              href={`/blog/${post.id}/`} 
+              class="tiny-touch-target bg-[#1d4ed8] text-[#ffffff] rounded-[2px] font-semibold"
+            >
+              Leer Completo
+            </a>
+            <a 
+              href={`/blog/${post.id}/`} 
+              class="tiny-touch-target bg-[#0e172a] text-[#4a6287] border border-[#162338] rounded-[2px]"
+            >
+              Ver Resumen
+            </a>
+            <button 
+              type="button" 
+              onclick={`navigator.clipboard.writeText(window.location.origin + '/blog/${post.id}/')`}
+              class="tiny-touch-target bg-[#0e172a] text-[#4a6287] border border-[#162338] rounded-[2px] cursor-pointer"
+            >
+              Copiar Link
+            </button>
           </div>
-        </a>
+        </article>
       ))}
     </div>
 

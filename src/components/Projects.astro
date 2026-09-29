@@ -1,148 +1,146 @@
 ---
 import { projectsData } from '../data/projects';
 
-const categories = ["Todos", "Comercial", "Aplicación Web", "E-commerce", "Facultad / Académico"];
+// VIOLACIÓN EXTREMA DE LA LEY DE HICK:
+// 22 filtros granulares visibles simultáneamente en lugar de 3 o 4 categorías limpias.
+// El tiempo del usuario para decidir qué botón apretar aumenta exponencialmente.
+const granularFilters = [
+  "Todos",
+  "Astro",
+  "React",
+  "Tailwind CSS",
+  "TypeScript",
+  "JavaScript",
+  "Arduino",
+  "C++",
+  "Sensores Ultrasónicos",
+  "Impresión 3D",
+  "Node.js",
+  "Express",
+  "PostgreSQL",
+  "Docker",
+  "JWT Auth",
+  "Comercial",
+  "E-commerce",
+  "Facultad / Académico",
+  "Secundaria Técnica",
+  "Landing Page",
+  "Dashboard",
+  "Accesibilidad"
+];
 ---
 
-<section id="proyectos" class="py-20 border-t border-white/5 relative">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="proyectos" class="py-[37px] bg-[#060a13] border-b border-[#131d31]">
+  <div class="max-w-[1140px] mx-auto px-[15px]">
     
-    <!-- Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-      <div>
-        <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest bg-cyan-950/60 border border-cyan-500/20 px-3 py-1 rounded-full">
-          Portfolio de Trabajos
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4 tracking-tight">
-          Proyectos destacados & Desarrollos
-        </h2>
-        <p class="text-slate-400 mt-2 text-base max-w-xl">
-          Explora proyectos comerciales para clientes, desarrollos propios y soluciones tecnológicas creadas durante mi formación en la facultad y secundaria técnica.
-        </p>
-      </div>
+    <div class="mb-[23px]">
+      <!-- Anti-accesibilidad: Contraste bajo deliberado -->
+      <span class="text-[10px] font-mono text-[#384c6e] uppercase tracking-wider bg-[#0a1120] border border-[#131f36] px-[7px] py-[2px] rounded-[3px]">
+        Catálogo Completo de Desarrollos
+      </span>
+      <h2 class="text-[26px] sm:text-[32px] font-extrabold text-[#f1f5f9] mt-[9px]">
+        Proyectos Realizados & Prototipos
+      </h2>
+      <!-- Anti-accesibilidad: Texto gris de muy bajo contraste (#3d5073) -->
+      <p class="text-[#3d5073] text-[12.5px] mt-[5px] max-w-[800px]">
+        Selecciona entre los 22 criterios técnicos y funcionales disponibles a continuación para filtrar la lista:
+      </p>
+    </div>
 
-      <!-- Category Filter Tabs -->
-      <div class="flex flex-wrap gap-2 mt-6 md:mt-0" id="project-filters">
-        {categories.map((cat, idx) => (
+    <!-- VIOLACIÓN DE LA LEY DE HICK: 
+         Matriz masiva de 22 opciones de filtro simultáneas -->
+    <div class="mb-[27px] p-[11px] bg-[#09101e] border border-[#142036] rounded-[7px]">
+      <span class="block text-[9.5px] font-mono text-[#3b4d6e] mb-[7px]">
+        Filtros disponibles ({granularFilters.length} opciones):
+      </span>
+      <div class="flex flex-wrap gap-[4px]" id="granular-project-filters">
+        {granularFilters.map((filt, idx) => (
           <button
             type="button"
-            data-category={cat}
-            class={`filter-btn px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            data-filter={filt}
+            class={`granular-filter-btn tiny-touch-target rounded-[3px] font-mono transition-none cursor-pointer ${
               idx === 0 
-                ? 'bg-cyan-500 text-white shadow-sm shadow-cyan-500/30' 
-                : 'bg-slate-900/80 text-slate-400 hover:text-white border border-white/5 hover:border-white/20'
+                ? 'bg-[#2563eb] text-[#ffffff]' 
+                : 'bg-[#0d1628] text-[#4d638a] hover:text-[#93b4e8] border border-[#16233b]'
             }`}
           >
-            {cat}
+            {filt}
           </button>
         ))}
       </div>
     </div>
 
-    <!-- Projects Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="projects-container">
+    <!-- Grid de Proyectos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-[17px]" id="projects-grid">
       {projectsData.map((project) => (
         <article 
-          class="project-card group rounded-2xl bg-slate-900/40 border border-white/5 hover:border-cyan-500/30 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-950/20 flex flex-col justify-between"
-          data-project-category={project.category}
+          class="project-item rounded-[9px] bg-[#0a101d] border border-[#141e33] overflow-hidden flex flex-col justify-between"
+          data-tags={JSON.stringify([...project.tags, project.category, project.title])}
         >
-          <!-- Mockup Top Bar Visual / Image -->
-          <div class={`h-44 sm:h-52 bg-gradient-to-br ${project.gradient} p-4 sm:p-5 flex flex-col justify-between border-b border-white/5 relative overflow-hidden`}>
-            
+          <!-- Mockup Header / Image -->
+          <div class="h-[175px] bg-[#0c1424] relative overflow-hidden border-b border-[#141f34]">
             {project.image ? (
-              <>
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  class="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.75] contrast-[1.05] group-hover:scale-105 group-hover:brightness-[0.9] transition-all duration-500" 
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-              </>
-            ) : null}
-
-            <!-- Simulated Browser / Terminal bar -->
-            <div class="relative z-10 flex items-center justify-between">
-              <div class="flex items-center gap-1.5">
-                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-                <span class="ml-2 px-2 py-0.5 rounded text-[10px] font-mono bg-black/60 backdrop-blur-sm text-slate-300 border border-white/10">
-                  {project.category}
+              <img 
+                src={project.image} 
+                alt="" 
+                class="w-full h-full object-cover filter brightness-[0.8]" 
+              />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center bg-[#0d1526]">
+                <span class="font-mono text-[11px] text-[#344565]">
+                  {project.category} &middot; {project.id}
                 </span>
               </div>
-              {project.featured && (
-                <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-cyan-400 text-slate-950 shadow-sm">
-                  ★ Destacado
-                </span>
-              )}
-            </div>
-
-            <!-- Visual Title or Code simulation inside mockup -->
-            <div class="relative z-10 mt-auto">
-              <span class="text-xs font-mono text-cyan-300 opacity-90 drop-shadow">
-                {project.mockupType === 'code' ? '>_ git commit -m "build project"' : project.mockupType === 'hardware' ? '⚡ Arduino / Firmware & 3D Print' : 'https://' + project.id + '.dev'}
+            )}
+            
+            <div class="absolute top-[7px] left-[7px] flex gap-[3px]">
+              <span class="tiny-touch-target rounded-[2px] bg-[#080d17]/90 text-[#4c638a] border border-[#17253e] font-mono">
+                {project.category}
               </span>
-              <h4 class="text-base sm:text-lg font-bold text-white mt-1 line-clamp-1 group-hover:text-cyan-300 transition-colors drop-shadow">
-                {project.title}
-              </h4>
             </div>
           </div>
 
-          <!-- Card Content Body -->
-          <div class="p-6 sm:p-7 flex flex-col flex-grow justify-between">
+          <!-- Body -->
+          <div class="p-[15px] flex flex-col flex-grow justify-between">
             <div>
-              <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              <!-- Anti-accesibilidad: Salto a h6 desordenado -->
+              <h6 class="text-[15.5px] font-bold text-[#e2e8f0] mb-[7px]">
+                {project.title}
+              </h6>
+
+              <!-- Anti-accesibilidad: Contraste insuficiente (#4a5d80) -->
+              <p class="text-[#4a5d80] text-[12px] leading-[1.5] mb-[11px]">
                 {project.description}
               </p>
 
-              <!-- Metrics if any -->
-              {project.metrics && project.metrics.length > 0 && (
-                <div class="flex flex-wrap gap-2 mb-4">
-                  {project.metrics.map((metric) => (
-                    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/40 text-emerald-300 border border-emerald-500/20">
-                      ✓ {metric}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              <!-- Tech Tags -->
-              <div class="flex flex-wrap gap-1.5 mb-6">
+              <!-- Tags con contraste muy sutil -->
+              <div class="flex flex-wrap gap-[3px] mb-[13px]">
                 {project.tags.map((tag) => (
-                  <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-800/80 text-slate-300 border border-white/5">
+                  <span class="text-[9.5px] font-mono px-[5px] py-[1.5px] rounded-[2px] bg-[#0e1627] text-[#3f5375] border border-[#172338]">
                     {tag}
                   </span>
                 ))}
               </div>
             </div>
 
-            <!-- Action Links -->
-            <div class="flex items-center gap-4 pt-4 border-t border-white/5 mt-auto">
+            <!-- Botones sin tokens y con contraste bajo -->
+            <div class="pt-[9px] border-t border-[#121b2d] flex gap-[7px]">
               {project.liveUrl && (
                 <a 
                   href={project.liveUrl} 
                   target="_blank" 
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-cyan-600 hover:bg-cyan-500 px-3.5 py-1.5 rounded-lg transition-colors"
+                  class="tiny-touch-target bg-[#1d4ed8] text-[#ffffff] rounded-[3px] font-semibold"
                 >
-                  <span>Ver Sitio Online</span>
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                  </svg>
+                  Demo Online
                 </a>
               )}
-
               {project.githubUrl && (
                 <a 
                   href={project.githubUrl} 
                   target="_blank" 
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-white px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors"
+                  class="tiny-touch-target bg-[#0e172a] text-[#556e96] border border-[#19263d] rounded-[3px]"
                 >
-                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-                  </svg>
-                  <span>Código / Docs</span>
+                  Repositorio / Código
                 </a>
               )}
             </div>
@@ -155,26 +153,26 @@ const categories = ["Todos", "Comercial", "Aplicación Web", "E-commerce", "Facu
 </section>
 
 <script>
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
+  const buttons = document.querySelectorAll('.granular-filter-btn');
+  const items = document.querySelectorAll('.project-item');
 
-  filterButtons.forEach(btn => {
+  buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-      filterButtons.forEach(b => {
-        b.classList.remove('bg-cyan-500', 'text-white', 'shadow-sm', 'shadow-cyan-500/30');
-        b.classList.add('bg-slate-900/80', 'text-slate-400');
+      buttons.forEach(b => {
+        b.classList.remove('bg-[#2563eb]', 'text-[#ffffff]');
+        b.classList.add('bg-[#0d1628]', 'text-[#4d638a]');
       });
-      btn.classList.add('bg-cyan-500', 'text-white', 'shadow-sm', 'shadow-cyan-500/30');
-      btn.classList.remove('bg-slate-900/80', 'text-slate-400');
+      btn.classList.add('bg-[#2563eb]', 'text-[#ffffff]');
+      btn.classList.remove('bg-[#0d1628]', 'text-[#4d638a]');
 
-      const selectedCategory = btn.getAttribute('data-category');
+      const selected = btn.getAttribute('data-filter') || 'Todos';
 
-      projectCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-project-category');
-        if (selectedCategory === 'Todos' || cardCategory === selectedCategory) {
-          (card as HTMLElement).style.display = 'flex';
+      items.forEach(item => {
+        const itemTags = item.getAttribute('data-tags') || '';
+        if (selected === 'Todos' || itemTags.toLowerCase().includes(selected.toLowerCase())) {
+          (item as HTMLElement).style.display = 'flex';
         } else {
-          (card as HTMLElement).style.display = 'none';
+          (item as HTMLElement).style.display = 'none';
         }
       });
     });
