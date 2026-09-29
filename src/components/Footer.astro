@@ -1,0 +1,74 @@
+---
+import { siteConfig } from '../data/siteConfig';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/5 bg-[#080c14] py-12 text-slate-400 text-xs">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <!-- Brand & Tagline -->
+      <div class="flex flex-col items-center md:items-start gap-1">
+        <a href="/" class="flex items-center gap-2 group">
+          <span class="w-6 h-6 rounded bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-mono font-bold text-white text-xs">
+            &lt;/&gt;
+          </span>
+          <span class="font-bold text-white text-sm">
+            {siteConfig.name}
+          </span>
+        </a>
+        <p class="text-slate-500 text-[11px] mt-1">
+          Desarrollo web profesional &middot; Soluciones modernas a medida
+        </p>
+      </div>
+
+      <!-- Quick Navigation -->
+      <nav class="flex flex-wrap items-center justify-center gap-4 text-xs">
+        <a href="/#inicio" class="hover:text-cyan-400 transition-colors">Inicio</a>
+        <a href="/#servicios" class="hover:text-cyan-400 transition-colors">Servicios</a>
+        <a href="/#proyectos" class="hover:text-cyan-400 transition-colors">Proyectos</a>
+        <a href="/#formacion" class="hover:text-cyan-400 transition-colors">Formación</a>
+        <a href="/blog" class="hover:text-cyan-400 transition-colors">Blog</a>
+        <a href="/#contacto" class="hover:text-cyan-400 transition-colors">Contacto</a>
+      </nav>
+
+      <!-- Social & Info -->
+      <div class="flex items-center gap-4">
+        <a 
+          href={siteConfig.github} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="hover:text-white transition-colors"
+          aria-label="GitHub"
+        >
+          GitHub
+        </a>
+        <a 
+          href={siteConfig.linkedin} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="hover:text-white transition-colors"
+          aria-label="LinkedIn"
+        >
+          LinkedIn
+        </a>
+        <a 
+          href={`mailto:${siteConfig.email}`} 
+          class="hover:text-white transition-colors"
+          aria-label="Email"
+        >
+          Email
+        </a>
+      </div>
+
+    </div>
+
+    <div class="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-2">
+      <p>&copy; {currentYear} {siteConfig.name}. Todos los derechos reservados.</p>
+      <p class="font-mono">
+        Desarrollado con <span class="text-cyan-400">Astro</span> + <span class="text-cyan-400">Tailwind CSS</span>
+      </p>
+    </div>
+  </div>
+</footer>

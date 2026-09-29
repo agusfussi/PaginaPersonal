@@ -1,0 +1,148 @@
+---
+import { educationData } from '../data/education';
+
+const getBadgeColor = (type: string) => {
+  switch (type) {
+    case 'university':
+      return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
+    case 'highschool':
+      return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
+    case 'certification':
+      return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+    default:
+      return 'bg-slate-500/10 text-slate-400 border-slate-500/20';
+  }
+};
+
+const getIcon = (type: string) => {
+  switch (type) {
+    case 'university':
+      return `<svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>`;
+    case 'highschool':
+      return `<svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>`;
+    case 'certification':
+      return `<svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>`;
+  }
+};
+---
+
+<section id="formacion" class="py-20 border-t border-white/5 relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest bg-cyan-950/60 border border-cyan-500/20 px-3 py-1 rounded-full">
+        Educación & Trayectoria
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4 tracking-tight">
+        Mi formación académica y méritos
+      </h2>
+      <p class="text-slate-400 mt-4 text-base">
+        La base teórica universitaria, la exigencia técnica salesiana y la constante actualización autodidacta definen mi profesionalismo.
+      </p>
+    </div>
+
+    <!-- Timeline Container -->
+    <div class="relative border-l border-slate-800 ml-4 md:ml-32 space-y-12 pb-4">
+      {educationData.map((item) => (
+        <div class="relative pl-8 md:pl-10 group">
+          
+          <!-- Period pill on the left for medium+ screens -->
+          <div class="hidden md:block absolute -left-36 top-1 text-right w-28">
+            <span class="text-xs font-mono font-semibold text-slate-400 bg-slate-900/80 px-2 py-1 rounded border border-white/5">
+              {item.period}
+            </span>
+          </div>
+
+          <!-- Timeline bullet icon -->
+          <div class="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center group-hover:scale-110 group-hover:border-cyan-400 transition-all shadow-md">
+            <Fragment set:html={getIcon(item.type)} />
+          </div>
+
+          <!-- Content Card -->
+          <div class="p-6 sm:p-7 rounded-2xl bg-slate-900/40 border border-white/5 hover:border-slate-700 transition-all">
+            
+            <!-- Mobile period badge -->
+            <div class="md:hidden mb-2">
+              <span class="text-xs font-mono text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded border border-white/5">
+                {item.period}
+              </span>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                {item.title}
+              </h3>
+              <span class={`text-xs font-mono font-medium px-2.5 py-0.5 rounded-full border ${getBadgeColor(item.type)}`}>
+                {item.status}
+              </span>
+            </div>
+
+            <p class="text-sm font-semibold text-cyan-400/90 mb-3">
+              {item.institution}
+            </p>
+
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              {item.description}
+            </p>
+
+            <!-- Optional Image Showcase (e.g. Escolta / Graduación) -->
+            {item.image && (
+              <div class="my-4 rounded-xl overflow-hidden border border-white/10 max-w-md group/img relative">
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  class="w-full h-48 sm:h-56 object-cover object-top group-hover/img:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/90 via-slate-950/60 to-transparent p-3 text-xs text-white">
+                  <span class="font-medium">Distinción Escolta de la Bandera Argentina &middot; Egresados 2024</span>
+                </div>
+              </div>
+            )}
+
+            <!-- Highlights bullets -->
+            <div class="mb-5 space-y-1.5">
+              <span class="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-2">
+                Hitos y logros destacados:
+              </span>
+              {item.highlights.map((highlight) => (
+                <div class="flex items-start gap-2 text-xs text-slate-300">
+                  <span class="text-cyan-400 font-bold mt-0.5">›</span>
+                  <span>{highlight}</span>
+                </div>
+              ))}
+            </div>
+
+            <!-- Skills acquired tags -->
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
+              {item.skills.map((skill) => (
+                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800/60 text-slate-400 border border-white/5">
+                  {skill}
+                </span>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Blog Callout banner for academic posts -->
+    <div class="mt-16 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-blue-950/40 via-slate-900 to-indigo-950/40 border border-cyan-500/20 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <h4 class="text-lg font-bold text-white">¿Te interesa conocer más sobre mis proyectos de estudio?</h4>
+        <p class="text-sm text-slate-400 mt-1 max-w-xl">
+          Escribo periódicamente en mi blog sobre algoritmos, robótica, proyectos técnicos y el paso de la secundaria técnica a la universidad.
+        </p>
+      </div>
+      <a 
+        href="/blog" 
+        class="shrink-0 px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 border border-white/10 hover:border-cyan-500/40 transition-all flex items-center gap-2"
+      >
+        <span>Explorar Artículos</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+</section>
