@@ -1,5 +1,7 @@
 ---
 import { realProjects } from '../data/projects';
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <section id="proyectos" class="w-11/12 max-w-4xl mx-auto my-28 px-4 sm:px-6" aria-labelledby="projects-heading">
@@ -35,7 +37,7 @@ import { realProjects } from '../data/projects';
               >
                 {project.image ? (
                   <img 
-                    src={project.image} 
+                    src={project.image.startsWith('http') ? project.image : `${baseUrl}${project.image}`} 
                     alt={`Captura de pantalla de la página ${project.title}`}
                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 filter brightness-95" 
                   />

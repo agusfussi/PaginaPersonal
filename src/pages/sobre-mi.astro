@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import { siteConfig } from '../data/siteConfig';
 
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const experiences = [
   {
     company: "Einge",
@@ -60,7 +62,7 @@ const education = [
     <!-- Breadcrumb / Back Link -->
     <div class="mb-10">
       <a 
-        href="/" 
+        href={`${baseUrl}/`} 
         class="inline-flex items-center gap-2 text-xs font-mono text-zinc-300 hover:text-white transition-colors group focus:outline-none focus:ring-2 focus:ring-zinc-400 rounded-sm"
         aria-label="Volver a la página principal"
       >
@@ -76,7 +78,7 @@ const education = [
         <!-- Profile Image -->
         <div class="relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 border-zinc-700 bg-zinc-900 shrink-0 shadow-2xl">
           <img 
-            src="/images/perfil.jpg" 
+            src={`${baseUrl}/images/perfil.jpg`} 
             alt="Fotografía de perfil de Agustín Fussi" 
             class="w-full h-full object-cover object-top"
           />
@@ -205,7 +207,7 @@ const education = [
                 <div class="mt-6 rounded-xl overflow-hidden border border-zinc-700 bg-zinc-900/90 p-3 max-w-lg shadow-xl">
                   <div class="relative aspect-[4/3] rounded-lg overflow-hidden border border-zinc-700">
                     <img 
-                      src={item.image} 
+                      src={item.image.startsWith('http') ? item.image : `${baseUrl}${item.image}`} 
                       alt={item.imageCaption || item.institution} 
                       class="w-full h-full object-cover object-center filter brightness-95 hover:brightness-105 transition-all duration-300" 
                     />
@@ -243,7 +245,7 @@ const education = [
       <!-- Bottom Navigation / CTAs -->
       <div class="border-t border-zinc-800 pt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
         <a 
-          href="/" 
+          href={`${baseUrl}/`} 
           class="w-full sm:w-auto px-6 py-3 rounded-lg border border-zinc-600 text-white hover:bg-zinc-800 transition-colors text-sm font-medium text-center focus:outline-none focus:ring-2 focus:ring-zinc-400"
           aria-label="Volver a la página principal con proyectos"
         >

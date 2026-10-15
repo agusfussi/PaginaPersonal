@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Experience from '../components/Experience.astro';
 import { siteConfig } from '../data/siteConfig';
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <Layout 
@@ -13,7 +15,7 @@ import { siteConfig } from '../data/siteConfig';
     <!-- Breadcrumb / Back link -->
     <div class="mb-10">
       <a 
-        href="/" 
+        href={`${baseUrl}/`} 
         class="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors group"
       >
         <span class="transition-transform group-hover:-translate-x-1">←</span>
@@ -43,7 +45,7 @@ import { siteConfig } from '../data/siteConfig';
     <!-- Bottom navigation / CTA -->
     <div class="border-t border-zinc-800/80 pt-12 mt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
       <a 
-        href="/" 
+        href={`${baseUrl}/`} 
         class="w-full sm:w-auto px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors text-sm font-medium text-center"
       >
         ← Volver al inicio

@@ -10,13 +10,17 @@ interface Props {
   image?: string;
 }
 
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const { 
   title = siteConfig.title, 
   description = siteConfig.tagline,
-  image = "/favicon.svg"
+  image = `${baseUrl}/images/og-cover.png`
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost:4321');
+const siteUrl = Astro.site ? Astro.site.origin : 'https://agusfussi.netlify.app';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const ogImageURL = new URL(image, siteUrl);
 ---
 
 <!doctype html>
@@ -24,7 +28,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- SEO Meta Tags -->
@@ -33,12 +37,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph / LinkedIn / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Agustín Fussi" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:image:secure_url" content={ogImageURL.href} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="604" />
+    <meta property="og:image:alt" content="Agustín Fussi - Transformación Digital" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL.href} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
