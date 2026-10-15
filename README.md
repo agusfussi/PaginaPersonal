@@ -4,7 +4,7 @@ Portfolio personal y sitio web donde comparto mis proyectos, desarrollos y forma
 
 ## Proyectos incluidos
 
-- **VisionGuide**: Dispositivo asistencial con sensores ultrasónicos y aplicación web para personas con discapacidad visual (Expo-Bienal 2023). [Ver sitio web](https://whimsical-gnome-48e4b6.netlify.app/)
+- **VisionGuide**: Dispositivo asistencial con sensores ultrasónicos y aplicación móvil para personas con discapacidad visual (Expo-Bienal 2023). [Ver sitio web](https://visionguide2023.netlify.app/)
 - **Brumapage**: Catálogo web comercial de productos. [Ver sitio web](https://bruuma.netlify.app/)
 - **Tienda Nube & E-Commerce**: Canal digital de ventas e integración de catálogo. [Ver sitio web](https://agusfussi.github.io/tienda-nube/)
 - **Gestión de Vacaciones & Sueldos**: Aplicación de escritorio interna para GMP Equipamientos (Tauri, React, TypeScript y SQLite).

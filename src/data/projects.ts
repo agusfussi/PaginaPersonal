@@ -14,10 +14,10 @@ export const realProjects: RealProject[] = [
   {
     id: "visionguide",
     title: "VisionGuide",
-    subtitle: "Dispositivo de Asistencia Visual & Web App",
-    description: "Sistema wearable creado para asistir a personas con discapacidad visual. Mediante sensores ultrasónicos y una aplicación web en tiempo real, detecta obstáculos e informa qué objeto se encuentra, a qué distancia y en qué dirección. Presentado con éxito en la Expo-Bienal 2023.",
-    tags: ["Arduino", "C++", "Sensores Ultrasónicos", "Web App", "Impresión 3D", "Accesibilidad"],
-    liveUrl: "https://whimsical-gnome-48e4b6.netlify.app/",
+    subtitle: "Dispositivo de Asistencia Visual & App Móvil",
+    description: "Sistema wearable creado para asistir a personas con discapacidad visual. Mediante sensores ultrasónicos y una aplicación móvil en tiempo real, detecta obstáculos e informa qué objeto se encuentra, a qué distancia y en qué dirección. Presentado con éxito en la Expo-Bienal 2023.",
+    tags: ["Arduino", "C++", "Sensores Ultrasónicos", "App Móvil", "Impresión 3D", "Accesibilidad"],
+    liveUrl: "https://visionguide2023.netlify.app/",
     image: "/images/visionguide-web.png",
     highlight: "Presentado en Expo-Bienal 2023"
   },
